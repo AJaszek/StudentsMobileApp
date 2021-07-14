@@ -71,13 +71,21 @@ public class ReviewSubjectActivity extends AppCompatActivity implements LoaderMa
 
         directoryCheckAndCreate();
 
-
+        Button addTextNoteButton = findViewById(R.id.addTextNoteButton);
         Button addNoteButton = findViewById(R.id.addNoteButton);
 
         addNoteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                if(checkWriteExternalStoragePermission() && checkCameraPermission()) openCamera();
+            }
+        });
+        addTextNoteButton.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), ReviewTextNotesActivity.class);
+                startActivity(intent);
             }
         });
 

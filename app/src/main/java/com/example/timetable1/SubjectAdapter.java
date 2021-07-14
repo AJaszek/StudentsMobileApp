@@ -108,7 +108,7 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.ViewHold
             subjectNote = (TextView) itemView.findViewById(R.id.subjectNote);
             editNote = (EditText) itemView.findViewById(R.id.editNote);
             delButton = (Button) itemView.findViewById(R.id.delButton);
-            addNoteButton = (Button) itemView.findViewById(R.id.addNoteButton);
+            addNoteButton = (Button) itemView.findViewById(R.id.addTextNoteButton);
             delNoteButton = (Button) itemView.findViewById(R.id.delNoteButton);
             editNoteLayout = (LinearLayout) itemView.findViewById(R.id.editNoteLayout);
             borderColorLayout = (ConstraintLayout) itemView.findViewById(R.id.subjectAllConstrain);

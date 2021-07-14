@@ -42,5 +42,7 @@
     <string name="everyWeek">Every week</string>
     <string name="teacherName">Teacher Name</string>
     <string name="timetable">Timetable</string>
+    <string name="textNote">Text notes</string>
+    <string name="Find">Find Note</string>
 
 </resources>

@@ -34,4 +34,12 @@
     <string name="everyWeek">Co tydzień</string>
     <string name="teacherName">Wykładowca</string>
     <string name="timetable">Plan</string>
+    <string name="textNote">Notatki tekstowe</string>
+    <string name="Find">Wyszukaj notatkę</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
 </resources>

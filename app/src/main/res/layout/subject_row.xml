@@ -100,7 +100,7 @@
                     android:orientation="horizontal">
 
                     <Button
-                        android:id="@+id/addNoteButton"
+                        android:id="@+id/addTextNoteButton"
                         android:layout_width="103dp"
                         android:layout_height="37dp"
                         android:layout_marginLeft="5dp"
