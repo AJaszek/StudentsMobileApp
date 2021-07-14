@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Plan zajęć</string>
+    <string name="action_settings">Ustawienia</string>
+    <string name="menu_home">Plan zajęć</string>
+    <string name="monday">Poniedziałek</string>
+    <string name="tuesday">Wtorek</string>
+    <string name="wednesday">Środa</string>
+    <string name="thursday">Czwartek</string>
+    <string name="friday">Piątek</string>
+    <string name="saturday">Sobota</string>
+    <string name="sunday">Niedziela</string>
+    <string name="subjectName">Nazwa przedmiotu</string>
+    <string name="startTime">Godzina rozpoczęcia</string>
+    <string name="finishTime">Godzina zakończenia</string>
+    <string name="buttonAdd">Dodaj</string>
+    <string name="buttonBack">Cofnij</string>
+    <string name="roomNumber">Numer sali</string>
+    <string name="dayText">Dzień tygodnia</string>
+    <string name="inRoom">w sali</string>
+    <string name="menu_authors">Autorzy</string>
+    <string name="added">Dodano</string>
+    <string name="incHour">Niepoprawna godzina</string>
+    <string name="menu_subject_list">Przedmioty</string>
+    <string name="addNote">Dodaj notatkę</string>
+    <string name="delNote">Usuń notatkę</string>
+    <string name="editNote">Edytuj notatkę</string>
+    <string name="test">Sprawdzian</string>
+    <string name="quiz">Kartkówka</string>
+    <string name="homework">Zadanie domowe</string>
+    <string name="other">Inne</string>
+    <string name="oddWeek">Tydzień nieparzysty</string>
+    <string name="evenWeek">Tydzień parzysty</string>
+    <string name="everyWeek">Co tydzień</string>
+    <string name="teacherName">Wykładowca</string>
+    <string name="timetable">Plan</string>
+</resources>
