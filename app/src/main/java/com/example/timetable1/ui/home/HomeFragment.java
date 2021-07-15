@@ -389,11 +389,11 @@ public class HomeFragment extends Fragment implements SubjectAdapter.ClickListen
         notificationManager.notify(1, notification);
 */
 
-        Calendar calendar1 = Calendar.getInstance();
+       // Calendar calendar1 = Calendar.getInstance();
         /*calendar1.set(Calendar.HOUR_OF_DAY, 11);
         calendar1.set(Calendar.MINUTE, 34);
         calendar1.set(Calendar.SECOND, 10);*/
-        calendar1.add(Calendar.SECOND, 5);
+      //  calendar1.add(Calendar.SECOND, 5);
 
 
         // intent.putExtra("subject", todayListSubjects().get(0));

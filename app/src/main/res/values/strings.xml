@@ -43,6 +43,8 @@
     <string name="teacherName">Teacher Name</string>
     <string name="timetable">Timetable</string>
     <string name="textNote">Text notes</string>
-    <string name="Find">Find Note</string>
+    <string name="Find">Find note</string>
+    <string name="topicEnter">Enter topic</string>
+    <string name="noteEnter">Enter note</string>
 
 </resources>

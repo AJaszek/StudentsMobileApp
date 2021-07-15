@@ -42,4 +42,6 @@
     <string name="nav_header_title">Android Studio</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="topicEnter">Wprowadź temat</string>
+    <string name="noteEnter">Wprowadź notatkę</string>
 </resources>

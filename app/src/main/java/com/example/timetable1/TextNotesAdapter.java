@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -42,12 +43,21 @@ public class TextNotesAdapter extends RecyclerView.Adapter<TextNotesAdapter.View
 
         public TextView topic;
         public TextView note;
+        public Button deleteNoteButton;
 
         ViewHolder(View itemView) {
             super(itemView);
             topic = itemView.findViewById(R.id.textNoteTopic);
             note = itemView.findViewById(R.id.textNote);
+            deleteNoteButton = itemView.findViewById(R.id.delTextNoteButton);
             itemView.setOnClickListener(this);
+
+            deleteNoteButton.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View view) {
+                    clickListener.onDeleteClick(getAdapterPosition());
+                }
+            });
         }
 
         @Override
@@ -66,6 +76,7 @@ public class TextNotesAdapter extends RecyclerView.Adapter<TextNotesAdapter.View
 
     public interface ItemClickListener {
         void onItemClick(View view, int position);
+        void onDeleteClick(int position);
     }
 }
 

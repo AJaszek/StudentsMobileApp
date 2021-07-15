@@ -85,6 +85,7 @@ public class ReviewSubjectActivity extends AppCompatActivity implements LoaderMa
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), ReviewTextNotesActivity.class);
+                intent.putExtra("subjectName", subject.getName());
                 startActivity(intent);
             }
         });

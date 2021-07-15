@@ -56,7 +56,7 @@ public class SubjectListFragment extends Fragment implements SubjectListAdapter.
         subjectView.setLayoutManager(new LinearLayoutManager(getContext()));
 
 
-        loadSubjectList(subjectList);
+        loadSubjectList();
         setAdapter(subjectList);
 
 
@@ -71,8 +71,8 @@ public class SubjectListFragment extends Fragment implements SubjectListAdapter.
         return true;
     }
 
-    private void loadSubjectList(List<Subject> subjectList) {
-        FileInputStream file = homeFragment.fileHandler.openFileInputStream();
+    private void loadSubjectList() {
+        FileInputStream file = homeFragment.fileHandler.openFileInputStream("subject");
         InputStreamReader inputStreamReader = new InputStreamReader(file);
         BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 
