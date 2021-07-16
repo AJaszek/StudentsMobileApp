@@ -46,5 +46,6 @@
     <string name="Find">Find note</string>
     <string name="topicEnter">Enter topic</string>
     <string name="noteEnter">Enter note</string>
+    <string name="FindOnly">Find</string>
 
 </resources>

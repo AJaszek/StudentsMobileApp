@@ -5,118 +5,123 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_background"
-    android:theme="@style/TextColor"
-    >
+    android:theme="@style/TextColor">
 
-    <TextView
-        android:id="@+id/subjectRewName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:text="aaa"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/notesView"
-        android:layout_width="413dp"
-        android:layout_height="332dp"
-        android:background="@drawable/button_transparent_backgroun"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.333"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <GridView
-        android:id="@+id/notesVieww"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="535dp"
-        android:layout_marginTop="32dp"
-        android:background="@drawable/button_transparent_backgroun"
-        android:columnWidth="100dp"
-        android:horizontalSpacing="10dp"
-        android:numColumns="auto_fit"
-        android:stretchMode="spacingWidthUniform"
-        android:verticalSpacing="10dp"
-        android:visibility="gone"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-
-
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/subjectRewName"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <Button
-        android:id="@+id/addTextNoteButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/button_transparent_backgroun"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
-        android:text="@string/textNote"
-        app:layout_constraintBottom_toTopOf="@+id/notesView"
-        app:layout_constraintEnd_toEndOf="parent" />
+        <TextView
+            android:id="@+id/subjectRewName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="aaa"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/addNoteButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/button_transparent_backgroun"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
-        android:text="@string/addNote"
-        app:layout_constraintBottom_toTopOf="@+id/notesView"
-        app:layout_constraintStart_toStartOf="parent" />
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="409dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="@string/teacherName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.048"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/subjectRewName" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/subjectTeacherName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="TextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/teacherName" />
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="188dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/timetable"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.026"
-        app:layout_constraintStart_toEndOf="@+id/subjectRewName"
-        app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/subjectTeacherName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TextView" />
+            </LinearLayout>
 
-    <TextView
-        android:id="@+id/hoursReview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.645"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/timetable" />
+
+                <TextView
+                    android:id="@+id/hoursReview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TextView" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/addNoteButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/button_transparent_backgroun"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:text="@string/addNote" />
+
+            <EditText
+                android:id="@+id/editFindPhotoNote"
+                android:layout_width="85dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:ems="10"
+                android:hint="@string/FindOnly"
+                android:inputType="date" />
+
+            <Button
+                android:id="@+id/addTextNoteButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/button_transparent_backgroun"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:text="@string/textNote" />
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/notesView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/button_transparent_backgroun" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
