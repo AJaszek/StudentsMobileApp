@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +22,8 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
 
     private Cursor NoteAdapterCursor;
     private final Activity activity;
-    private  OnCilckThumbListener onCilckThumbListener;
+    private OnCilckThumbListener onCilckThumbListener;
+    private CharSequence dateToFind = "";
 
     public interface OnCilckThumbListener{
         void OnClick(Uri imageUri);
@@ -29,23 +31,37 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
     public NoteAdapter(Activity activity) {
         this.activity = activity;
         this.onCilckThumbListener = (OnCilckThumbListener) activity;
+
     }
+
+    public void setDateToFind(CharSequence dateToFind){
+        this.dateToFind = dateToFind;
+    }
+    /*public static CharSequence getDateToFind(){
+        return this.dateToFind;
+    }*/
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.notes_row, parent, false);
-        return new ViewHolder(view);
+        return new ViewHolder(view,dateToFind);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Bitmap bitmap = getBitmapFromNoteReview(position, holder.noteDate);
+       // Log.d("aaa", dateToFind.toString());
+        //NoteAdapter.getDateToFind();
+        Bitmap bitmap = getBitmapFromNoteReview(position, holder.noteDate, dateToFind);
+
         if(bitmap != null){
             holder.getImageView().setImageBitmap(bitmap);
         }else {
-            holder.notNesseseryView.setVisibility(View.INVISIBLE);
+            //holder.notNesseseryView.setVisibility(View.GONE);
+            holder.notNesseseryView.removeAllViews();
+           // holder.notNesseseryView.
+
         }
     }
 
@@ -59,10 +75,11 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
          private final ImageView imageView;
          public TextView noteDate;
          public ConstraintLayout notNesseseryView;
+        private CharSequence dateToFind = "";
 
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull View itemView, CharSequence dateToFind) {
             super(itemView);
-
+            this.dateToFind = dateToFind;
             noteDate = (TextView) itemView.findViewById(R.id.noteDate);
             notNesseseryView = (ConstraintLayout) itemView.findViewById(R.id.subjectAllConstrain);
             imageView = (ImageView) itemView.findViewById(R.id.noteImage);
@@ -113,7 +130,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
 
         return trimmed;
     }
-    private Bitmap getBitmapFromNoteReview(int position, TextView noteDate){
+    private Bitmap getBitmapFromNoteReview(int position, TextView noteDate, CharSequence dateToFind){
         int idIndex = NoteAdapterCursor.getColumnIndex(MediaStore.Files.FileColumns._ID);
         int mediaTypeIndex = NoteAdapterCursor.getColumnIndex(MediaStore.Files.FileColumns.MEDIA_TYPE);
 
@@ -126,6 +143,9 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
 
                 int dataIndex = NoteAdapterCursor.getColumnIndex(MediaStore.Files.FileColumns.DATA);
                 String date = trimDate(NoteAdapterCursor.getString(dataIndex));
+
+                if(dateToFind!="" && !date.contains(dateToFind))
+                    return null;
                 noteDate.setText(date);
 
                 return MediaStore.Images.Thumbnails.getThumbnail(

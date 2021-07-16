@@ -10,9 +10,12 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -57,12 +60,8 @@ public class ReviewSubjectActivity extends AppCompatActivity implements LoaderMa
         subject = (Subject) getIntent().getSerializableExtra("subject");
         hoursList = (List<String>) getIntent().getSerializableExtra("hours");
 
-        thumbnailRecyclerView = (RecyclerView) findViewById(R.id.notesView);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);
-        thumbnailRecyclerView.setLayoutManager(gridLayoutManager);
-        noteAdapter = new NoteAdapter(this);
-        thumbnailRecyclerView.setAdapter(noteAdapter);
 
+        initializeView();
         checkReadExternalStoragePermission();
 
 
@@ -73,6 +72,7 @@ public class ReviewSubjectActivity extends AppCompatActivity implements LoaderMa
 
         Button addTextNoteButton = findViewById(R.id.addTextNoteButton);
         Button addNoteButton = findViewById(R.id.addNoteButton);
+        EditText findNoteEditText = (EditText) findViewById(R.id.editFindPhotoNote);
 
         addNoteButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,6 +87,19 @@ public class ReviewSubjectActivity extends AppCompatActivity implements LoaderMa
                 Intent intent = new Intent(getApplicationContext(), ReviewTextNotesActivity.class);
                 intent.putExtra("subjectName", subject.getName());
                 startActivity(intent);
+            }
+        });
+        findNoteEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                findNotes(s);
+
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
             }
         });
 
@@ -104,6 +117,17 @@ public class ReviewSubjectActivity extends AppCompatActivity implements LoaderMa
             //Log.d("aaa", subject);
         }
         hoursReviewText.setText(hours);
+    }
+    private void initializeView(){
+        thumbnailRecyclerView = (RecyclerView) findViewById(R.id.notesView);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);
+        thumbnailRecyclerView.setLayoutManager(gridLayoutManager);
+        noteAdapter = new NoteAdapter(this);
+        thumbnailRecyclerView.setAdapter(noteAdapter);
+    }
+    private void findNotes(CharSequence s) {
+        noteAdapter.setDateToFind(s);
+        noteAdapter.notifyDataSetChanged();
     }
 
     @Override
