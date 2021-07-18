@@ -1,5 +1,6 @@
 package com.example.timetable1;
 
+import android.util.Log;
 import android.widget.TextView;
 
 import java.util.Calendar;
@@ -10,7 +11,7 @@ public class CalendarCustom {
     private int dayOfWeek = 0;
 
     public CalendarCustom() {
-        dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+        dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK) - 1;
     }
 
    /* public int checkDayOfWeek(){

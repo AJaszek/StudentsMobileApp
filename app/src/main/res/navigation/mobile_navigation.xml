@@ -23,9 +23,9 @@
         android:label="@string/menu_subject_list"
         tools:layout="@layout/fragment_subject_list" />
 
-    <!--<fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.timetable1.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" /> -->
+    <fragment
+        android:id="@+id/nav_to_do_list"
+        android:name="com.example.timetable1.fragments.ToDoFragment"
+        android:label="@string/menu_to_do_list"
+        tools:layout="@layout/fragment_to_do" />
 </navigation>

@@ -10,6 +10,7 @@
     <string name="menu_home">Timetable</string>
     <string name="menu_authors">Authors</string>
     <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_to_do_list">To-do list</string>
     <string name="menu_subject_list">Subjects</string>
 
     <string name="monday">Monday</string>
@@ -47,5 +48,9 @@
     <string name="topicEnter">Enter topic</string>
     <string name="noteEnter">Enter note</string>
     <string name="FindOnly">Find</string>
+    <string name="addToDo">Add task</string>
+    <string name="dontAddToDo">Don\'t add task</string>
+    <string name="descriptionEnter">Enter description</string>
+
 
 </resources>

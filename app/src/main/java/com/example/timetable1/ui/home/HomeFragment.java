@@ -368,7 +368,7 @@ public class HomeFragment extends Fragment implements SubjectAdapter.ClickListen
         buttonsOnClickHandler();
 
         subjectView = initializeRecycleView(subjectView);
-        calendar.setDayOfWeek(calendar.checkDayOfWeek() - 1);
+        calendar.setDayOfWeek(calendar.checkDayOfWeek());
         subjectList = fileHandler.loadDataFromDevice();
         sortSubjectLists();
 

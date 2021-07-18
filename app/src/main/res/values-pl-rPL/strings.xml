@@ -45,4 +45,8 @@
     <string name="topicEnter">Wprowadź temat</string>
     <string name="noteEnter">Wprowadź notatkę</string>
     <string name="FindOnly">Wyszukaj</string>
+    <string name="menu_to_do_list">Lista zadań</string>
+    <string name="addToDo">Dodaj zadanie</string>
+    <string name="descriptionEnter">Wprowadź opis</string>
+    <string name="dontAddToDo">Nie dodawaj zadania</string>
 </resources>
