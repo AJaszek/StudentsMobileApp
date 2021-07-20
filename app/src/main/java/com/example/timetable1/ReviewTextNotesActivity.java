@@ -16,8 +16,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReviewTextNotesActivity extends AppCompatActivity implements TextNotesAdapter.ItemClickListener{
-
+public class ReviewTextNotesActivity extends AppCompatActivity implements TextNotesAdapter.ItemClickListener {
 
 
     private List<TextNote> notesList = new ArrayList<>();
@@ -37,13 +36,13 @@ public class ReviewTextNotesActivity extends AppCompatActivity implements TextNo
         Button addNoteButton = (Button) findViewById(R.id.addLongTextNoteButton);
         EditText findNoteEditText = (EditText) findViewById(R.id.editFindNote);
 
-        resizingButton.setOnClickListener(new View.OnClickListener(){
+        resizingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 resizeAddNoteConstrain();
             }
         });
-        addNoteButton.setOnClickListener(new View.OnClickListener(){
+        addNoteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 addNote();
@@ -53,11 +52,13 @@ public class ReviewTextNotesActivity extends AppCompatActivity implements TextNo
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
+
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 findNotes(s);
                 //Log.d("aaa", s.toString());
             }
+
             @Override
             public void afterTextChanged(Editable s) {
             }
@@ -70,8 +71,8 @@ public class ReviewTextNotesActivity extends AppCompatActivity implements TextNo
     private void findNotes(CharSequence sequence) {
         List<TextNote> notesListTemp = new ArrayList<>();
 
-        for(TextNote note : notesList){
-            if(note.getTopic().contains(sequence))
+        for (TextNote note : notesList) {
+            if (note.getTopic().contains(sequence))
                 notesListTemp.add(note);
         }
 
@@ -80,35 +81,26 @@ public class ReviewTextNotesActivity extends AppCompatActivity implements TextNo
 
     public void addNote() {
 
-
-
         String topic = ((EditText) findViewById(R.id.editTopic)).getText().toString();
         String note = ((EditText) findViewById(R.id.editLongNote)).getText().toString();
 
-        if(fileHandler.addTextNote(subjectName, topic, note)) {
+        if (fileHandler.addTextNote(subjectName, topic, note)) {
             Toast.makeText(this, getString(R.string.added), Toast.LENGTH_LONG).show();
             initializeNotes();
         }
-       // if( testRegex(startHour,finishHour)){
-
-
-        }
-
-
+    }
 
 
     public void resizeAddNoteConstrain() {
         ConstraintLayout viewById = (ConstraintLayout) findViewById(R.id.resizingAddTextNoteConstrain);
-                //.itemView.findViewById(R.id.resizingSubjectConstrain);
-
         int visibility = viewById.getVisibility();
-        //boolean clicked = todayListSubjects().get(position).clicked;
+
         if (visibility == View.GONE) {
             viewById.setVisibility(View.VISIBLE);
         } else {
             viewById.setVisibility(View.GONE);
         }
-       // todayListSubjects().get(position).clicked = !clicked;
+
     }
 
     private void initializeNotes() {
@@ -130,18 +122,18 @@ public class ReviewTextNotesActivity extends AppCompatActivity implements TextNo
     }
 
 
-   public void resizeNoteView(int position) {
-       ConstraintLayout viewById = (ConstraintLayout) notesRecyclerView.findViewHolderForLayoutPosition(position)
-               .itemView.findViewById(R.id.resizingTextNoteConstrain);
+    public void resizeNoteView(int position) {
+        ConstraintLayout viewById = (ConstraintLayout) notesRecyclerView.findViewHolderForLayoutPosition(position)
+                .itemView.findViewById(R.id.resizingTextNoteConstrain);
 
-       boolean clicked = notesList.get(position).isClicked();
-       if (clicked) {
-           viewById.setVisibility(View.GONE);
-       } else {
-           viewById.setVisibility(View.VISIBLE);
-       }
-       notesList.get(position).changeClickedState();
-   }
+        boolean clicked = notesList.get(position).isClicked();
+        if (clicked) {
+            viewById.setVisibility(View.GONE);
+        } else {
+            viewById.setVisibility(View.VISIBLE);
+        }
+        notesList.get(position).changeClickedState();
+    }
 
     @Override
     public void onItemClick(View view, int position) {

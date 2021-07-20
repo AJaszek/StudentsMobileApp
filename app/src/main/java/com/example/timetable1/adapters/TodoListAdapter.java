@@ -45,6 +45,10 @@ public class TodoListAdapter  extends RecyclerView.Adapter<TodoListAdapter.ViewH
         return todoList.size();
     }
 
+    public void updateTodoList(List<Todo> todoList) {
+        this.todoList = todoList;
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         //public TextView topic;
@@ -66,6 +70,12 @@ public class TodoListAdapter  extends RecyclerView.Adapter<TodoListAdapter.ViewH
                     clickListener.onDeleteClick(getAdapterPosition());
                 }
             });
+            doneCheck.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View view) {
+                    clickListener.onCheckBoxClick(getAdapterPosition(), (CheckBox) view);
+                }
+            });
         }
 
         @Override
@@ -85,5 +95,6 @@ public class TodoListAdapter  extends RecyclerView.Adapter<TodoListAdapter.ViewH
     public interface ItemClickListener {
         void onItemClick(View view, int position);
         void onDeleteClick(int position);
+        void onCheckBoxClick(int position, CheckBox checkBox);
     }
 }

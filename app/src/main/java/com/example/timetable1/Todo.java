@@ -32,4 +32,8 @@ public class Todo {
     public void changeClickedState(){
         this.clicked = !this.clicked;
     }
+
+    public boolean getDone() {
+        return this.done;
+    }
 }
