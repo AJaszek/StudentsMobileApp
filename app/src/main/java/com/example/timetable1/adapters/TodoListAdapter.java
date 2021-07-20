@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.timetable1.R;
@@ -38,6 +39,19 @@ public class TodoListAdapter  extends RecyclerView.Adapter<TodoListAdapter.ViewH
         holder.doneCheck.setText(todo.getTopic());
         holder.description.setText(todo.getDescription());
         holder.doneCheck.setChecked(todo.isDone());
+        switch (todo.getStyle()){
+            case 1:
+                holder.constraintLayout.setForeground(holder.constraintLayout.getResources().getDrawable(R.drawable.button_transparent_backgroun_red));
+                break;
+            case 2:
+                holder.constraintLayout.setForeground(holder.constraintLayout.getResources().getDrawable(R.drawable.button_transparent_backgroun_green));
+                break;
+            case 3:
+                holder.constraintLayout.setForeground(holder.constraintLayout.getResources().getDrawable(R.drawable.button_transparent_backgroun_blue));
+                break;
+            default:
+                holder.constraintLayout.setForeground(null);
+        }
     }
 
     @Override
@@ -55,6 +69,7 @@ public class TodoListAdapter  extends RecyclerView.Adapter<TodoListAdapter.ViewH
         public TextView description;
         public CheckBox doneCheck;
         public Button deleteNoteButton;
+        public ConstraintLayout constraintLayout;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -62,6 +77,7 @@ public class TodoListAdapter  extends RecyclerView.Adapter<TodoListAdapter.ViewH
             description = itemView.findViewById(R.id.textTodoDescription);
             deleteNoteButton = itemView.findViewById(R.id.deleteTodoButton);
             doneCheck = itemView.findViewById(R.id.checkTodoDone);
+            constraintLayout = itemView.findViewById(R.id.todoConstrain);
             itemView.setOnClickListener(this);
 
             deleteNoteButton.setOnClickListener(new View.OnClickListener(){

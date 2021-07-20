@@ -6,13 +6,17 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.timetable1.FileHandler;
@@ -30,6 +34,7 @@ public class ToDoFragment extends Fragment implements TodoListAdapter.ItemClickL
     private RecyclerView recyclerView;
     private TodoListAdapter adapter;
     private FileHandler fileHandler = new FileHandler();
+    private int todoStyle=0;
 
     public ToDoFragment() {
         // Required empty public constructor
@@ -54,12 +59,37 @@ public class ToDoFragment extends Fragment implements TodoListAdapter.ItemClickL
         adapter.setClickListener(this);
         recyclerView.setAdapter(adapter);
     }
+    public void setSpinner(View root){
+        ArrayList<String> borderTypes = new ArrayList<>();
+
+        borderTypes.add(root.getResources().getString(R.string.none));
+        borderTypes.add(root.getResources().getString(R.string.pink));
+        borderTypes.add(root.getResources().getString(R.string.yellow));
+        borderTypes.add(root.getResources().getString(R.string.blue));
+
+        Spinner spinner = (Spinner) root.findViewById(R.id.spinnerBorderTodo);
+        ArrayAdapter adapter = new ArrayAdapter(root.getContext(), android.R.layout.simple_spinner_dropdown_item, borderTypes );
+        spinner.setAdapter(adapter);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1,
+                                       int position, long id) {
+                todoStyle = position;
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+            }
+        });
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_to_do, container, false);
+
+
 
 
 
@@ -80,6 +110,7 @@ public class ToDoFragment extends Fragment implements TodoListAdapter.ItemClickL
 
 
         setAdapter(root);
+        setSpinner(root);
 
         return root;
     }
@@ -91,9 +122,9 @@ public class ToDoFragment extends Fragment implements TodoListAdapter.ItemClickL
         String description = ((EditText) getActivity().findViewById(R.id.editTodoDescription)).getText().toString();
 
 
-        if(fileHandler.addTodo(topic, description)) {
+        if(fileHandler.addTodo(topic, description, todoStyle)) {
             Toast.makeText(getContext(), getString(R.string.added), Toast.LENGTH_LONG).show();
-            todoList.add(0,new Todo(topic,description,false));
+            todoList.add(0,new Todo(topic,description,false, todoStyle));
             adapter.updateTodoList(todoList);
             adapter.notifyDataSetChanged();
             //initializeNotes();

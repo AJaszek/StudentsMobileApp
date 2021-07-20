@@ -49,4 +49,10 @@
     <string name="addToDo">Dodaj zadanie</string>
     <string name="descriptionEnter">Wprowadź opis</string>
     <string name="dontAddToDo">Nie dodawaj zadania</string>
+    <string name="border">Obwódka</string>
+    <string name="none">Brak</string>
+    <string name="blue">Niebieska</string>
+    <string name="yellow">Żółta</string>
+    <string name="pink">Różowa</string>
+    <string name="white">Biała</string>
 </resources>

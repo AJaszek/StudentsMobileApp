@@ -5,12 +5,18 @@ public class Todo {
     private String description;
     private boolean done;
     private boolean clicked;
+    private int style;
 
-    public Todo(String topic, String note, boolean done) {
+    public Todo(String topic, String note, boolean done, int style) {
         this.topic = topic;
         this.description = note;
         this.done = done;
         this.clicked = false;
+        this.style = style;
+    }
+
+    public int getStyle() {
+        return style;
     }
 
     public boolean isDone() {

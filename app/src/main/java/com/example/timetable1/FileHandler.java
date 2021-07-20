@@ -236,8 +236,10 @@ public class FileHandler {
 
                 String[] splittedText = text.split("`");
 
-
-                todoList.add(new Todo(splittedText[0], splittedText[1], Boolean.parseBoolean(splittedText[2])));
+                if(splittedText.length==3)
+                todoList.add(new Todo(splittedText[0], splittedText[1], Boolean.parseBoolean(splittedText[2]), 0));
+                else
+                    todoList.add(new Todo(splittedText[0], splittedText[1], Boolean.parseBoolean(splittedText[2]), Integer.parseInt(splittedText[3])));
             }
         } catch (FileNotFoundException e) {
             makeDateFile(pathTodo);
@@ -252,12 +254,12 @@ public class FileHandler {
         return todoList;
     }
 
-    public boolean addTodo(String topic, String description) {
+    public boolean addTodo(String topic, String description, int style) {
         FileOutputStream fos = null;
         try {
             fos = new FileOutputStream(pathTodo, true);
             //fos = openFileOutput("Note", MODE_APPEND);
-            String dataToSave = topic + "`" + description + "`false";
+            String dataToSave = topic + "`" + description + "`false`"+String.valueOf(style);
             fos.write(dataToSave.getBytes());
             fos.write('\n');
             fos.close();
@@ -334,7 +336,7 @@ public class FileHandler {
                         splittedText[2] = "true";
                         checked = true;
                     }
-                    String line = splittedText[0] + "`" +splittedText[1] + "`" +splittedText[2];
+                    String line = splittedText[0] + "`" +splittedText[1] + "`" +splittedText[2]+ "`" +splittedText[3];
                     writer.write(line + System.getProperty("line.separator"));
                 } else
                     writer.write(currentLine + System.getProperty("line.separator"));

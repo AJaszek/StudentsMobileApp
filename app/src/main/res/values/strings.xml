@@ -51,6 +51,12 @@
     <string name="addToDo">Add task</string>
     <string name="dontAddToDo">Don\'t add task</string>
     <string name="descriptionEnter">Enter description</string>
+    <string name="border">Border</string>
+    <string name="none">None</string>
+    <string name="blue">Blue</string>
+    <string name="yellow">Yellow</string>
+    <string name="pink">Pink</string>
+    <string name="white">White</string>
 
 
 </resources>
