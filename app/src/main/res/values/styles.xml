@@ -28,4 +28,10 @@
         <item name="android:titleTextColor">@color/colorAccent</item>
     </style>
 
+    <style name="LighterShadows" >
+        <item name="android:ambientShadowAlpha">0.01</item>
+        <item name="android:spotShadowAlpha">0.01</item>
+
+    </style>
+
 </resources>
