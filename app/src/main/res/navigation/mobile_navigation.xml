@@ -28,4 +28,10 @@
         android:name="com.example.timetable1.fragments.ToDoFragment"
         android:label="@string/menu_to_do_list"
         tools:layout="@layout/fragment_to_do" />
+
+    <fragment
+        android:id="@+id/nav_settings"
+        android:name="com.example.timetable1.fragments.SettingsFragment"
+        android:label="@string/settings"
+        tools:layout="@layout/fragment_settings" />
 </navigation>

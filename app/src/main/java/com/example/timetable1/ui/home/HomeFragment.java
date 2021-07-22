@@ -8,9 +8,11 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -146,7 +148,7 @@ public class HomeFragment extends Fragment implements SubjectAdapter.ClickListen
         Subject subj = todayListSubjects().get(position);
 
         return subj.getName() + ";" + subj.getStartHour() + ";" +
-                subj.getFinishHour() + ";" + subj.getTeacherName() +";" + subj.getRoomNumber() + ";" + calendar.checkDayOfWeek();
+                subj.getFinishHour() + ";" + subj.getTeacherName() + ";" + subj.getRoomNumber() + ";" + calendar.checkDayOfWeek();
     }
 
     private void deleteSubject(int position) {
@@ -218,8 +220,8 @@ public class HomeFragment extends Fragment implements SubjectAdapter.ClickListen
             while ((currentLine = reader.readLine()) != null) {
                 // trim newline when comparing with lineToRemove
                 String trimmedLine = currentLine.trim();
-                Log.d("aaa",trimmedLine);
-                Log.d("aaa",subjectToAddNote);
+                Log.d("aaa", trimmedLine);
+                Log.d("aaa", subjectToAddNote);
                 if (trimmedLine.startsWith(subjectToAddNote)) {
 
                     writer.write(currentLine + noteType + String.valueOf(calendar.getDay()) + calendar.getMonth() + "." + note + ":" + System.getProperty("line.separator"));
@@ -348,14 +350,17 @@ public class HomeFragment extends Fragment implements SubjectAdapter.ClickListen
     }
 
     public void startNotificationService() {
-        Intent intent = new Intent(getContext(), NotificationReciever.class);
+        SharedPreferences preferences = getActivity().getSharedPreferences("Pref", Context.MODE_PRIVATE);
 
-        intent = putExtraSubjectsIntoIntent(intent);
+        if (preferences.getBoolean("notifications", false)) {
+            Intent intent = new Intent(getContext(), NotificationReciever.class);
 
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(getContext(), 100, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        AlarmManager alarmManager = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 60 * 1000, pendingIntent);
+            intent = putExtraSubjectsIntoIntent(intent);
 
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(getContext(), 100, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+            AlarmManager alarmManager = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
+            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 60 * 1000, pendingIntent);
+        }
 
     }
 
@@ -389,11 +394,11 @@ public class HomeFragment extends Fragment implements SubjectAdapter.ClickListen
         notificationManager.notify(1, notification);
 */
 
-       // Calendar calendar1 = Calendar.getInstance();
+        // Calendar calendar1 = Calendar.getInstance();
         /*calendar1.set(Calendar.HOUR_OF_DAY, 11);
         calendar1.set(Calendar.MINUTE, 34);
         calendar1.set(Calendar.SECOND, 10);*/
-      //  calendar1.add(Calendar.SECOND, 5);
+        //  calendar1.add(Calendar.SECOND, 5);
 
 
         // intent.putExtra("subject", todayListSubjects().get(0));

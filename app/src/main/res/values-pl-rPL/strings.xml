@@ -55,4 +55,6 @@
     <string name="yellow">Żółta</string>
     <string name="pink">Różowa</string>
     <string name="white">Biała</string>
+    <string name="settings">Ustawienia</string>
+    <string name="notifications">Powiadomienia</string>
 </resources>
