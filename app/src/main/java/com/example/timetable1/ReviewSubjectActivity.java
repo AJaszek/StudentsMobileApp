@@ -225,9 +225,9 @@ public class ReviewSubjectActivity extends AppCompatActivity implements LoaderMa
         return sdf.format(calendar.getTime());
     }
     private void openCamera() {
-        Log.d("aaa","aa");
+
         String formattedDate = createTimeStamp();
-        Log.d("aaa","aa");
+
 
         ContentValues values = new ContentValues();
 

@@ -1,5 +1,7 @@
 package com.example.timetable1;
 
+import android.os.Environment;
+import android.os.FileUtils;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -25,6 +27,7 @@ public class FileHandler {
     String pathTextNotes = "/data/data/com.example.timetable1/files/Notes";
     String pathTodo = "/data/data/com.example.timetable1/files/Todo";
     String pathDirectory = "/data/data/com.example.timetable1/files";
+    String pathSheredPreferences = "/data/data/com.example.timetable1/shared_prefs/Pref.xml";
 
     public void makeDateFile(String directory) {
         FileOutputStream fos = null;
@@ -356,5 +359,28 @@ public class FileHandler {
             e.printStackTrace();
         }
         return checked;
+    }
+
+    public boolean deleteAllData() {
+
+        File data = new File(pathDirectory);
+        File imageNotes = new File( Environment.getExternalStorageDirectory()+ "/TimeTable/Notes");
+        File settings = new File(pathSheredPreferences);
+
+        return deleteContentRecursive(data)
+                && deleteContentRecursive(imageNotes)
+                && settings.delete();
+
+    }
+    boolean deleteContentRecursive(File file) {
+
+        if (file.isDirectory())
+            for (File child : file.listFiles())
+                deleteContentRecursive(child);
+
+        file.delete();
+
+        return true;
+
     }
 }
