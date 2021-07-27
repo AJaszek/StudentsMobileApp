@@ -63,6 +63,8 @@
     <string name="delete">Delete</string>
     <string name="backupExport">Make backup file</string>
     <string name="backupImport">Import backup file</string>
+    <string name="dataDeleted">Data deleted</string>
+    <string name="wrongFile">Wrong file</string>
 
 
 </resources>

@@ -239,8 +239,8 @@ public class FileHandler {
 
                 String[] splittedText = text.split("`");
 
-                if(splittedText.length==3)
-                todoList.add(new Todo(splittedText[0], splittedText[1], Boolean.parseBoolean(splittedText[2]), 0));
+                if (splittedText.length == 3)
+                    todoList.add(new Todo(splittedText[0], splittedText[1], Boolean.parseBoolean(splittedText[2]), 0));
                 else
                     todoList.add(new Todo(splittedText[0], splittedText[1], Boolean.parseBoolean(splittedText[2]), Integer.parseInt(splittedText[3])));
             }
@@ -262,7 +262,7 @@ public class FileHandler {
         try {
             fos = new FileOutputStream(pathTodo, true);
             //fos = openFileOutput("Note", MODE_APPEND);
-            String dataToSave = topic + "`" + description + "`false`"+String.valueOf(style);
+            String dataToSave = topic + "`" + description + "`false`" + String.valueOf(style);
             fos.write(dataToSave.getBytes());
             fos.write('\n');
             fos.close();
@@ -294,7 +294,6 @@ public class FileHandler {
                 if (counter == position) continue;
                 else
                     writer.write(currentLine + System.getProperty("line.separator"));
-
 
 
             }
@@ -331,19 +330,17 @@ public class FileHandler {
                 counter++;
                 if (counter == position) {
                     String[] splittedText = currentLine.split("`");
-                    if(splittedText[2].equals("true")){
+                    if (splittedText[2].equals("true")) {
                         splittedText[2] = "false";
                         checked = false;
-                    }
-                    else{
+                    } else {
                         splittedText[2] = "true";
                         checked = true;
                     }
-                    String line = splittedText[0] + "`" +splittedText[1] + "`" +splittedText[2]+ "`" +splittedText[3];
+                    String line = splittedText[0] + "`" + splittedText[1] + "`" + splittedText[2] + "`" + splittedText[3];
                     writer.write(line + System.getProperty("line.separator"));
                 } else
                     writer.write(currentLine + System.getProperty("line.separator"));
-
 
 
             }
@@ -364,7 +361,7 @@ public class FileHandler {
     public boolean deleteAllData() {
 
         File data = new File(pathDirectory);
-        File imageNotes = new File( Environment.getExternalStorageDirectory()+ "/TimeTable/Notes");
+        File imageNotes = new File(Environment.getExternalStorageDirectory() + "/TimeTable/Notes");
         File settings = new File(pathSheredPreferences);
 
         return deleteContentRecursive(data)
@@ -372,6 +369,7 @@ public class FileHandler {
                 && settings.delete();
 
     }
+
     boolean deleteContentRecursive(File file) {
 
         if (file.isDirectory())
@@ -381,6 +379,80 @@ public class FileHandler {
         file.delete();
 
         return true;
+
+    }
+
+    public boolean exportData() {
+
+        List<File> filesList = new ArrayList<>();
+
+        filesList.add(new File(pathFile));
+        filesList.add(new File(pathTodo));
+        filesList.add(new File(pathTextNotes));
+        filesList.add(new File(pathSheredPreferences));
+
+        String exportDirectory = Environment.getExternalStorageDirectory() + "/TimeTable/exportedData";
+        try {
+            FileOutputStream fos = new FileOutputStream(exportDirectory, true);
+            fos.write("TimetableApp Exported Data".getBytes());
+            fos.write('\n');
+
+            for (File file : filesList) {
+                BufferedReader reader = new BufferedReader(new FileReader(file));
+
+                String separator = "###########";
+                String currentLine;
+
+                fos.write(separator.getBytes());
+                fos.write('\n');
+
+                while ((currentLine = reader.readLine()) != null) {
+                    fos.write(currentLine.getBytes());
+                    fos.write('\n');
+                }
+            }
+            fos.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return true;
+    }
+
+    public boolean importData(String filePath) {
+
+        File importedFile = new File(filePath);
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(importedFile));
+            List<BufferedWriter> writersList = new ArrayList<>();
+            writersList.add(new BufferedWriter(new FileWriter(pathFile)));
+            writersList.add(new BufferedWriter(new FileWriter(pathTodo)));
+            writersList.add(new BufferedWriter(new FileWriter(pathTextNotes)));
+            writersList.add(new BufferedWriter(new FileWriter(pathSheredPreferences)));
+
+            String currentLine;
+            int counter = -1;
+            while ((currentLine = reader.readLine()) != null) {
+
+                if (currentLine.equals("###########"))
+                    counter++;
+                else {
+                    if (counter == -1 && !currentLine.equals("TimetableApp Exported Data"))
+                        return false;
+                    else if (counter >= 0)
+                        writersList.get(counter).write(currentLine + System.getProperty("line.separator"));
+
+                }
+
+            }
+            for (BufferedWriter writer : writersList)
+                writer.close();
+            reader.close();
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
+
 
     }
 }

@@ -1,11 +1,16 @@
 package com.example.timetable1.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.os.Environment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,10 +18,20 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.timetable1.FileHandler;
 import com.example.timetable1.R;
+import com.example.timetable1.TextNote;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+
+import static android.app.Activity.RESULT_OK;
 
 
 public class SettingsFragment extends Fragment {
@@ -25,6 +40,8 @@ public class SettingsFragment extends Fragment {
     SharedPreferences settings;
     Switch switchNotifications;
     LinearLayout deleteAllDataLayout;
+    LinearLayout exportDataLayout;
+    LinearLayout importDataLayout;
     //Switch switchNotifications;
 
     public SettingsFragment() {
@@ -35,7 +52,7 @@ public class SettingsFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
+
 
     }
 
@@ -55,10 +72,12 @@ public class SettingsFragment extends Fragment {
 
     }
 
-    private void initializeButtons(View view){
+    private void initializeButtons(View view) {
 
         switchNotifications = view.findViewById(R.id.switchNotifications);
         deleteAllDataLayout = view.findViewById(R.id.deleteAllDataLayout);
+        exportDataLayout = view.findViewById(R.id.exportDataLayout);
+        importDataLayout = view.findViewById(R.id.importDataLayout);
 
         switchNotifications.setChecked(settings.getBoolean("notifications", false));
 
@@ -76,16 +95,64 @@ public class SettingsFragment extends Fragment {
 
             }
         });
+        exportDataLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                exportData();
+
+            }
+        });
+        importDataLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                importData();
+
+            }
+        });
     }
 
     private void deleteAllData() {
 
         FileHandler fileHandler = new FileHandler();
-        if(fileHandler.deleteAllData())
+        if (fileHandler.deleteAllData())
+            Toast.makeText(getContext(), getString(R.string.dataDeleted), Toast.LENGTH_SHORT).show();
+    }
+
+    private void exportData() {
+        FileHandler fileHandler = new FileHandler();
+        if (fileHandler.exportData())
             Toast.makeText(getContext(), getString(R.string.added), Toast.LENGTH_SHORT).show();
     }
 
-    private void putBooleanPreferences(String key, boolean value){
+    private void importData() {
+
+        Intent intent;
+        intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("*/*");
+        startActivityForResult(intent, 10);
+
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+
+        switch (requestCode) {
+            case 10:
+                if (resultCode == RESULT_OK) {
+                    String path = data.getData().getPathSegments().get(1);
+                    String[] splittedPath = path.split(":");
+                    String filePath = Environment.getExternalStorageDirectory() + "/" + splittedPath[1];
+                    FileHandler fileHandler = new FileHandler();
+                    if (fileHandler.importData(filePath))
+                        Toast.makeText(getContext(), getString(R.string.added), Toast.LENGTH_SHORT).show();
+                    else
+                        Toast.makeText(getContext(), getString(R.string.wrongFile), Toast.LENGTH_SHORT).show();
+                }
+                break;
+        }
+    }
+
+    private void putBooleanPreferences(String key, boolean value) {
         SharedPreferences.Editor editor = settings.edit();
         editor.putBoolean(key, value);
         editor.apply();

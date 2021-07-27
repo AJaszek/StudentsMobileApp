@@ -61,4 +61,6 @@
     <string name="delete">Wyczyść</string>
     <string name="backupExport">Zrób kopię zapasową</string>
     <string name="backupImport">Importuj kopię zapasową</string>
+    <string name="dataDeleted">Usunięto dane</string>
+    <string name="wrongFile">Zły plik</string>
 </resources>
