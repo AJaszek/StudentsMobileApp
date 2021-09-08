@@ -57,6 +57,23 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/exportTimatebleLayout"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:clickable="true"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:text="@string/timatebleExport"
+                android:theme="@style/TextColorBlack" />
+        </LinearLayout>
+
+        <LinearLayout
             android:id="@+id/importDataLayout"
             android:layout_width="match_parent"
             android:layout_height="45dp"

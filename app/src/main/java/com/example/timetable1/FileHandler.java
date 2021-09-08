@@ -391,32 +391,8 @@ public class FileHandler {
         filesList.add(new File(pathTextNotes));
         filesList.add(new File(pathSheredPreferences));
 
-        String exportDirectory = Environment.getExternalStorageDirectory() + "/TimeTable/exportedData";
-        try {
-            FileOutputStream fos = new FileOutputStream(exportDirectory, true);
-            fos.write("TimetableApp Exported Data".getBytes());
-            fos.write('\n');
+        return exportFile(filesList, "exportedData", "TimetableApp Exported Data");
 
-            for (File file : filesList) {
-                BufferedReader reader = new BufferedReader(new FileReader(file));
-
-                String separator = "###########";
-                String currentLine;
-
-                fos.write(separator.getBytes());
-                fos.write('\n');
-
-                while ((currentLine = reader.readLine()) != null) {
-                    fos.write(currentLine.getBytes());
-                    fos.write('\n');
-                }
-            }
-            fos.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return true;
     }
 
     public boolean importData(String filePath) {
@@ -437,7 +413,7 @@ public class FileHandler {
                 if (currentLine.equals("###########"))
                     counter++;
                 else {
-                    if (counter == -1 && !currentLine.equals("TimetableApp Exported Data"))
+                    if (counter == -1 && !(currentLine.equals("TimetableApp Exported Data")||currentLine.equals("TimetableApp Exported Timetable")))
                         return false;
                     else if (counter >= 0)
                         writersList.get(counter).write(currentLine + System.getProperty("line.separator"));
@@ -453,6 +429,44 @@ public class FileHandler {
         }
         return true;
 
+
+    }
+    public boolean exportFile(List<File> filesList, String fileName, String header){
+        String exportDirectory = Environment.getExternalStorageDirectory() + "/TimeTable/" + fileName;
+        try {
+            FileOutputStream fos = new FileOutputStream(exportDirectory, true);
+            fos.write(header.getBytes());
+            fos.write('\n');
+
+            for (File file : filesList) {
+                BufferedReader reader = new BufferedReader(new FileReader(file));
+
+                String separator = "###########";
+                String currentLine;
+
+                fos.write(separator.getBytes());
+                fos.write('\n');
+
+                while ((currentLine = reader.readLine()) != null) {
+                    fos.write(currentLine.getBytes());
+                    fos.write('\n');
+                }
+            }
+            fos.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        return true;
+
+    }
+    public boolean exportTimetable() {
+
+        List<File> filesList = new ArrayList<>();
+        filesList.add(new File(pathFile));
+
+        return exportFile(filesList, "exportedTimetable", "TimetableApp Exported Timetable");
 
     }
 }

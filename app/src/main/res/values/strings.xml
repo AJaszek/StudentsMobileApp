@@ -62,9 +62,11 @@
     <string name="deleteAllData">Delete all data</string>
     <string name="delete">Delete</string>
     <string name="backupExport">Make backup file</string>
-    <string name="backupImport">Import backup file</string>
+    <string name="backupImport">Import file</string>
     <string name="dataDeleted">Data deleted</string>
     <string name="wrongFile">Wrong file</string>
+    <string name="timatebleExport">Export Timetable</string>
+    <string name="timetableImport">Import Timetable</string>
 
 
 </resources>

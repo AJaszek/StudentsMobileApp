@@ -60,7 +60,9 @@
     <string name="deleteAllData">Wyczyść wszystkie dane</string>
     <string name="delete">Wyczyść</string>
     <string name="backupExport">Zrób kopię zapasową</string>
-    <string name="backupImport">Importuj kopię zapasową</string>
+    <string name="backupImport">Importuj plik</string>
     <string name="dataDeleted">Usunięto dane</string>
     <string name="wrongFile">Zły plik</string>
+    <string name="timatebleExport">Eksportuj plan zajęć</string>
+    <string name="timetableImport">Importuj plan zajęć</string>
 </resources>

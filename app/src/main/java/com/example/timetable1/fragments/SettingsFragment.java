@@ -42,6 +42,8 @@ public class SettingsFragment extends Fragment {
     LinearLayout deleteAllDataLayout;
     LinearLayout exportDataLayout;
     LinearLayout importDataLayout;
+    LinearLayout exportTimetable;
+
     //Switch switchNotifications;
 
     public SettingsFragment() {
@@ -78,6 +80,7 @@ public class SettingsFragment extends Fragment {
         deleteAllDataLayout = view.findViewById(R.id.deleteAllDataLayout);
         exportDataLayout = view.findViewById(R.id.exportDataLayout);
         importDataLayout = view.findViewById(R.id.importDataLayout);
+        exportTimetable = view.findViewById(R.id.exportTimatebleLayout);
 
         switchNotifications.setChecked(settings.getBoolean("notifications", false));
 
@@ -109,6 +112,13 @@ public class SettingsFragment extends Fragment {
 
             }
         });
+        exportTimetable.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                exportTable();
+
+            }
+        });
     }
 
     private void deleteAllData() {
@@ -123,7 +133,11 @@ public class SettingsFragment extends Fragment {
         if (fileHandler.exportData())
             Toast.makeText(getContext(), getString(R.string.added), Toast.LENGTH_SHORT).show();
     }
-
+    private void exportTable() {
+        FileHandler fileHandler = new FileHandler();
+        if (fileHandler.exportTimetable())
+            Toast.makeText(getContext(), getString(R.string.added), Toast.LENGTH_SHORT).show();
+    }
     private void importData() {
 
         Intent intent;
