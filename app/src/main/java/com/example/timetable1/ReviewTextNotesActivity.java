@@ -34,6 +34,7 @@ public class ReviewTextNotesActivity extends AppCompatActivity implements TextNo
 
         Button resizingButton = (Button) findViewById(R.id.resizingAddTextNoteButton);
         Button addNoteButton = (Button) findViewById(R.id.addLongTextNoteButton);
+        Button exportNotesButton = (Button) findViewById(R.id.exportNotesButton);
         EditText findNoteEditText = (EditText) findViewById(R.id.editFindNote);
 
         resizingButton.setOnClickListener(new View.OnClickListener() {
@@ -46,6 +47,12 @@ public class ReviewTextNotesActivity extends AppCompatActivity implements TextNo
             @Override
             public void onClick(View view) {
                 addNote();
+            }
+        });
+        exportNotesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                exportNotesToTextFile();
             }
         });
         findNoteEditText.addTextChangedListener(new TextWatcher() {
@@ -66,6 +73,12 @@ public class ReviewTextNotesActivity extends AppCompatActivity implements TextNo
         initializeNotes();
 
 
+    }
+
+    private void exportNotesToTextFile() {
+        if (fileHandler.exportNotesToTextFile(subjectName, notesList)) {
+            Toast.makeText(this, getString(R.string.added), Toast.LENGTH_LONG).show();
+        }
     }
 
     private void findNotes(CharSequence sequence) {

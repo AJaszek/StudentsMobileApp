@@ -65,4 +65,5 @@
     <string name="wrongFile">Zły plik</string>
     <string name="timatebleExport">Eksportuj plan zajęć</string>
     <string name="timetableImport">Importuj plan zajęć</string>
+    <string name="exportToTextFile">Eksportuj notatki do pliku tekstowego</string>
 </resources>

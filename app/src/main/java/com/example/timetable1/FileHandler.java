@@ -15,10 +15,12 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 public class FileHandler {
@@ -468,5 +470,35 @@ public class FileHandler {
 
         return exportFile(filesList, "exportedTimetable", "TimetableApp Exported Timetable");
 
+    }
+
+    public boolean exportNotesToTextFile(String subjectName, List<TextNote> notesList) {
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        String date = formatter.format(new Date());
+        String exportDirectory = Environment.getExternalStorageDirectory() + "/TimeTable/" + subjectName + date + ".txt";
+        try {
+            FileOutputStream fos = new FileOutputStream(exportDirectory, true);
+            fos.write(subjectName.getBytes());
+            fos.write('\n');
+            fos.write('\n');
+
+            for (TextNote note : notesList) {
+
+                String separator = "###########";
+                fos.write(separator.getBytes());
+                fos.write('\n');
+
+                fos.write(note.getTopic().getBytes());
+                fos.write('\n');
+                fos.write(note.getNote().getBytes());
+                fos.write('\n');
+            }
+            fos.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        return true;
     }
 }
