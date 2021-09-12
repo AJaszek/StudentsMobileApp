@@ -10,9 +10,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
-        android:background="@drawable/gradient_items"
         android:elevation="2dp"
-        android:theme="@style/TextColor"
+        android:theme="@style/DarkerItem"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -25,6 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="8.00 - 9.30"
+            android:theme="@style/Transparent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.568"
             app:layout_constraintStart_toStartOf="parent"
@@ -38,7 +38,8 @@
             android:layout_marginTop="20dp"
             android:text="Przedmiot"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:theme="@style/Transparent"/>
 
         <Space
             android:id="@+id/sizeOfSubject"
@@ -46,7 +47,8 @@
             android:layout_height="57dp"
             android:layout_marginStart="28dp"
             app:layout_constraintStart_toEndOf="@+id/subjectName"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:theme="@style/Transparent"/>
 
         <TextView
             android:id="@+id/roomNumber"
@@ -56,7 +58,8 @@
             android:layout_marginTop="20dp"
             android:text="aaaaaa"
             app:layout_constraintStart_toEndOf="@+id/inRoom"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:theme="@style/Transparent"/>
 
         <TextView
             android:id="@+id/inRoom"
@@ -67,7 +70,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.274"
             app:layout_constraintStart_toEndOf="@+id/subjectHours"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:theme="@style/Transparent"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/resizingSubjectConstrain"

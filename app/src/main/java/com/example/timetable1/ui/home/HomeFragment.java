@@ -22,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
@@ -380,6 +381,8 @@ public class HomeFragment extends Fragment implements SubjectAdapter.ClickListen
         setTextDayOfWeek();
         setAdapter(todayListSubjects());
         startNotificationService();
+        setColorMode();
+
 
         /*notificationManager = NotificationManagerCompat.from(getContext());
 
@@ -408,6 +411,13 @@ public class HomeFragment extends Fragment implements SubjectAdapter.ClickListen
 
 
         return root;
+    }
+
+    private void setColorMode() {
+        SharedPreferences settings;
+        settings = getActivity().getSharedPreferences("Pref", Context.MODE_PRIVATE);
+        if(settings.getBoolean("nightMode", false))
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
     }
 
 

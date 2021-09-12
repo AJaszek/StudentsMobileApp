@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="5dp"
-    android:background="@drawable/gradient_items"
+    android:theme="@style/DarkerItem"
     android:elevation="2dp">
 
     <CheckBox
@@ -14,6 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="CheckBox"
+        android:textColor="@color/colorAccent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -24,14 +25,16 @@
         android:orientation="horizontal"
         android:padding="3dp"
         android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@+id/checkTodoDone">
+        app:layout_constraintTop_toBottomOf="@+id/checkTodoDone"
+        android:theme="@style/Transparent">
 
         <TextView
             android:id="@+id/textTodoDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="TextView" />
+            android:text="TextView"
+            />
 
         <Button
             android:id="@+id/deleteTodoButton"

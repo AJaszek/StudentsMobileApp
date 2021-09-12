@@ -18,7 +18,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 
-public class NoteShowActivity extends Activity {
+public class NoteShowActivity extends AppCompatActivity {
 
     private ViewGroup mainLayout;
     ScaleGestureDetector scaleGestureDetector;

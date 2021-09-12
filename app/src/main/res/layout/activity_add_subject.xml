@@ -1,46 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_background"
-    android:theme="@style/TextColor">
-
-    <Spinner
-        android:id="@+id/evenWeekCheck"
-        android:layout_width="wrap_content"
-        android:layout_height="25dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dayText" />
+    android:padding="5dp"
+    android:theme="@style/WindowBackgroundd">
 
     <EditText
         android:id="@+id/editSubjectName"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="56dp"
         android:ems="10"
         android:hint="@string/subjectName"
         android:inputType="textPersonName"
+        android:textColor="@color/colorAccent"
+        android:theme="@style/TextColor"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.555"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/editTeacherName"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="@string/teacherName"
         android:inputType="textPersonName"
+        android:textColor="@color/colorAccent"
+        android:theme="@style/TextColor"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.555"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/finishHour" />
 
@@ -48,80 +41,102 @@
         android:id="@+id/buttonAdd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/button_transparent_backgroun"
         android:onClick="save"
         android:text="@string/buttonAdd"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dayOfWeek" />
+        app:layout_constraintBottom_toTopOf="@+id/buttonBack"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/buttonBack"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_height="48dp"
+        android:background="@drawable/button_transparent_backgroun"
         android:onClick="back"
         android:text="@string/buttonBack"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonAdd"
-        android:background="@drawable/button_transparent_backgroun"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/startHour"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="@string/startTime"
         android:inputType="time"
+        android:textColor="@color/colorAccent"
+        android:theme="@style/TextColor"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.444"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editSubjectName" />
 
     <EditText
         android:id="@+id/finishHour"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="@string/finishTime"
         android:inputType="time"
+        android:textColor="@color/colorAccent"
+        android:theme="@style/TextColor"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/startHour"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/startHour" />
 
     <EditText
         android:id="@+id/roomNumber"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="@string/roomNumber"
         android:inputType="textPersonName"
+        android:textColor="@color/colorAccent"
+        android:theme="@style/TextColor"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.444"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTeacherName" />
 
     <Spinner
-        android:id="@+id/dayOfWeek"
+        android:id="@+id/evenWeekCheck"
         android:layout_width="wrap_content"
         android:layout_height="25dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintStart_toEndOf="@+id/dayText"
-        app:layout_constraintTop_toBottomOf="@+id/roomNumber" />
-
-    <TextView
-        android:id="@+id/dayText"
-        android:layout_width="105dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/dayText"
-        android:textSize="18sp"
+        android:layout_marginTop="24dp"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.338"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/roomNumber" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="92dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/buttonAdd"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/evenWeekCheck">
+
+        <TextView
+            android:id="@+id/dayText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:text="@string/dayText" />
+
+        <Spinner
+            android:id="@+id/dayOfWeek"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_weight="3"
+            android:theme="@style/TextColor" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

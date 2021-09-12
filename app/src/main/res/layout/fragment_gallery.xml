@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:theme="@style/WindowBackgroundd"
     tools:context=".ui.gallery.GalleryFragment">
 
     <TextView
@@ -16,6 +17,7 @@
         android:text="Autor: Arek"
         android:textAlignment="center"
         android:textSize="20sp"
+        android:theme="@style/Transparent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

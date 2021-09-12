@@ -17,6 +17,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.timetable1.FileHandler;
@@ -73,9 +74,10 @@ public class ToDoFragment extends Fragment implements TodoListAdapter.ItemClickL
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> arg0, View arg1,
+            public void onItemSelected(AdapterView<?> parentView, View arg1,
                                        int position, long id) {
                 todoStyle = position;
+                ((TextView)parentView.getChildAt(0)).setTextColor(getResources().getColor(R.color.colorAccent));
             }
             @Override
             public void onNothingSelected(AdapterView<?> arg0) {

@@ -68,6 +68,7 @@
     <string name="timatebleExport">Export Timetable</string>
     <string name="timetableImport">Import Timetable</string>
     <string name="exportToTextFile">Export notes to text file</string>
+    <string name="nightMode">Night mode</string>
 
 
 </resources>

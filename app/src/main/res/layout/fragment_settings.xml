@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:theme="@style/WindowBackgroundd"
     tools:context=".fragments.SettingsFragment">
 
 
@@ -19,7 +20,18 @@
             android:checked="false"
             android:showText="false"
             android:splitTrack="false"
-            android:text="@string/notifications" />
+            android:text="@string/notifications"
+            android:textColor="@color/colorAccent" />
+
+        <Switch
+            android:id="@+id/switchNightMode"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:checked="false"
+            android:showText="false"
+            android:splitTrack="false"
+            android:text="@string/nightMode"
+            android:textColor="@color/colorAccent" />
 
         <LinearLayout
             android:id="@+id/deleteAllDataLayout"
@@ -35,7 +47,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:text="@string/deleteAllData"
-                android:theme="@style/TextColorBlack" />
+                 />
 
         </LinearLayout>
 
@@ -53,7 +65,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:text="@string/backupExport"
-                android:theme="@style/TextColorBlack" />
+                 />
         </LinearLayout>
 
         <LinearLayout
@@ -70,7 +82,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:text="@string/timatebleExport"
-                android:theme="@style/TextColorBlack" />
+                 />
         </LinearLayout>
 
         <LinearLayout
@@ -87,7 +99,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:text="@string/backupImport"
-                android:theme="@style/TextColorBlack" />
+                />
         </LinearLayout>
 
     </LinearLayout>

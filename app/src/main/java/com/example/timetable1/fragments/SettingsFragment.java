@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 
 import android.os.Environment;
@@ -39,15 +40,14 @@ public class SettingsFragment extends Fragment {
 
     SharedPreferences settings;
     Switch switchNotifications;
+    Switch switchNightMode;
     LinearLayout deleteAllDataLayout;
     LinearLayout exportDataLayout;
     LinearLayout importDataLayout;
     LinearLayout exportTimetable;
 
-    //Switch switchNotifications;
-
     public SettingsFragment() {
-        // Required empty public constructor
+
     }
 
 
@@ -77,18 +77,29 @@ public class SettingsFragment extends Fragment {
     private void initializeButtons(View view) {
 
         switchNotifications = view.findViewById(R.id.switchNotifications);
+        switchNightMode = view.findViewById(R.id.switchNightMode);
         deleteAllDataLayout = view.findViewById(R.id.deleteAllDataLayout);
         exportDataLayout = view.findViewById(R.id.exportDataLayout);
         importDataLayout = view.findViewById(R.id.importDataLayout);
         exportTimetable = view.findViewById(R.id.exportTimatebleLayout);
 
         switchNotifications.setChecked(settings.getBoolean("notifications", false));
+        switchNightMode.setChecked(settings.getBoolean("nightMode", false));
+
+
 
 
         switchNotifications.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 putBooleanPreferences("notifications", isChecked);
+            }
+        });
+        switchNightMode.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                putBooleanPreferences("nightMode", isChecked);
+                changeNightMode();
             }
         });
         deleteAllDataLayout.setOnClickListener(new View.OnClickListener() {
@@ -119,6 +130,13 @@ public class SettingsFragment extends Fragment {
 
             }
         });
+    }
+
+    private void changeNightMode() {
+        if(settings.getBoolean("nightMode", false))
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        else
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
     }
 
     private void deleteAllData() {

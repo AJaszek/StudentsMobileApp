@@ -1,7 +1,10 @@
 package com.example.timetable1;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -9,7 +12,11 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import com.example.timetable1.ui.home.HomeFragment;
 
@@ -21,7 +28,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.regex.Pattern;
 
-public class AddSubjectActivity extends Activity {
+public class AddSubjectActivity extends AppCompatActivity {
 
     private int dayOfWeek;
     private int evenWeek = 0;
@@ -29,6 +36,10 @@ public class AddSubjectActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SharedPreferences settings;
+        settings = getApplicationContext().getSharedPreferences("Pref", Context.MODE_PRIVATE);
+        if(settings.getBoolean("nightMode", true))
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
         setContentView(R.layout.activity_add_subject);
 
 
@@ -55,11 +66,11 @@ public class AddSubjectActivity extends Activity {
 
         spinnerDayOfWeek.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> arg0, View arg1,
+            public void onItemSelected(AdapterView<?> parentView, View arg1,
                                        int position, long id) {
                 //String item = arg0.getItemAtPosition(position).toString();
                 dayOfWeek = position;
-
+                ((TextView)parentView.getChildAt(0)).setTextColor(getResources().getColor(R.color.colorAccent));
 
             }
 
@@ -75,11 +86,11 @@ public class AddSubjectActivity extends Activity {
 
         spinnerEvenWeek.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> arg0, View arg1,
+            public void onItemSelected(AdapterView<?> parentView, View arg1,
                                        int position, long id) {
                 //String item = arg0.getItemAtPosition(position).toString();
                 evenWeek = position;
-
+                ((TextView)parentView.getChildAt(0)).setTextColor(getResources().getColor(R.color.colorAccent));
 
             }
 
@@ -136,5 +147,11 @@ public class AddSubjectActivity extends Activity {
     public void back(View v){
         Intent intent = new Intent(this, HomeFragment.class);
         startActivity(intent);
+    }
+    private void setColorMode() {
+        SharedPreferences settings;
+        settings = getApplicationContext().getSharedPreferences("Pref", Context.MODE_PRIVATE);
+        if(settings.getBoolean("nightMode", false))
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
     }
 }

@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_background"
-    android:theme="@style/TextColor">
+    android:theme="@style/WindowBackgroundd">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,7 +14,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:theme="@style/Transparent">
 
         <TextView
             android:id="@+id/subjectRewName"
@@ -25,14 +25,16 @@
             android:layout_marginBottom="10dp"
             android:text="aaa"
             android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            />
 
         <LinearLayout
             android:id="@+id/linearLayout2"
             android:layout_width="409dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:theme="@style/Transparent">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -45,13 +47,15 @@
                     android:id="@+id/textView2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/teacherName" />
+                    android:text="@string/teacherName"
+                    android:theme="@style/Transparent"/>
 
                 <TextView
                     android:id="@+id/subjectTeacherName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:theme="@style/Transparent"/>
             </LinearLayout>
 
             <LinearLayout
@@ -65,13 +69,15 @@
                     android:id="@+id/textView4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/timetable" />
+                    android:text="@string/timetable"
+                    android:theme="@style/Transparent"/>
 
                 <TextView
                     android:id="@+id/hoursReview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:theme="@style/Transparent"/>
 
             </LinearLayout>
 
@@ -101,7 +107,9 @@
                 android:layout_marginBottom="8dp"
                 android:ems="10"
                 android:hint="@string/FindOnly"
-                android:inputType="date" />
+                android:inputType="date"
+                android:textColor="@color/colorAccent"
+                android:theme="@style/Transparent" />
 
             <Button
                 android:id="@+id/addTextNoteButton"
@@ -120,7 +128,8 @@
             android:id="@+id/notesView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/button_transparent_backgroun" />
+            android:background="@drawable/button_transparent_backgroun"
+            android:theme="@style/Transparent"/>
 
     </LinearLayout>
 
