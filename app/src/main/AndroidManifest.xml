@@ -34,6 +34,9 @@
 
         <receiver android:name=".RemoteViewProvider" />
         <receiver android:name=".NotificationReciever" />
+        <service android:name=".VolumeModeService"
+            android:exported="false"
+        />
         <service
             android:name=".RemoteViewService"
             android:exported="false"

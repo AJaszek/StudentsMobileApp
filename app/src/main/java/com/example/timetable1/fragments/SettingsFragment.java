@@ -40,6 +40,7 @@ public class SettingsFragment extends Fragment {
 
     SharedPreferences settings;
     Switch switchNotifications;
+    Switch switchVibrationMode;
     Switch switchNightMode;
     LinearLayout deleteAllDataLayout;
     LinearLayout exportDataLayout;
@@ -77,6 +78,7 @@ public class SettingsFragment extends Fragment {
     private void initializeButtons(View view) {
 
         switchNotifications = view.findViewById(R.id.switchNotifications);
+        switchVibrationMode = view.findViewById(R.id.switchVibration);
         switchNightMode = view.findViewById(R.id.switchNightMode);
         deleteAllDataLayout = view.findViewById(R.id.deleteAllDataLayout);
         exportDataLayout = view.findViewById(R.id.exportDataLayout);
@@ -85,6 +87,7 @@ public class SettingsFragment extends Fragment {
 
         switchNotifications.setChecked(settings.getBoolean("notifications", false));
         switchNightMode.setChecked(settings.getBoolean("nightMode", false));
+        switchVibrationMode.setChecked(settings.getBoolean("vibrations", false));
 
 
 
@@ -93,6 +96,12 @@ public class SettingsFragment extends Fragment {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 putBooleanPreferences("notifications", isChecked);
+            }
+        });
+        switchVibrationMode.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                putBooleanPreferences("vibrations", isChecked);
             }
         });
         switchNightMode.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

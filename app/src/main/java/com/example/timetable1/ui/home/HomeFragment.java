@@ -40,6 +40,7 @@ import com.example.timetable1.NotificationReciever;
 import com.example.timetable1.R;
 import com.example.timetable1.Subject;
 import com.example.timetable1.SubjectAdapter;
+import com.example.timetable1.VolumeModeService;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.io.BufferedReader;
@@ -285,6 +286,7 @@ public class HomeFragment extends Fragment implements SubjectAdapter.ClickListen
 
             todayListSubjects().get(position).removeNote(todayListSubjects().get(position).findNoteIndex(noteToRemove));
             setAdapter(todayListSubjects());
+            startSilentModeService();
 
 
         } catch (IOException e) {
@@ -365,12 +367,20 @@ public class HomeFragment extends Fragment implements SubjectAdapter.ClickListen
 
     }
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        HomeViewModel homeViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
-        root = inflater.inflate(R.layout.fragment_home, container, false);
+    public void startSilentModeService() {
+        SharedPreferences preferences = getActivity().getSharedPreferences("Pref", Context.MODE_PRIVATE);
 
+        if (preferences.getBoolean("vibrations", false)) {
+            Intent intent = new Intent(getContext(), VolumeModeService.class);
 
+            intent = putExtraSubjectsIntoIntent(intent);
+            PendingIntent pendingIntent = PendingIntent.getService(getContext(), 5, intent, 0);
+            AlarmManager alarmManager = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
+            alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis() + 1000, pendingIntent);
+        }
+    }
+
+    private void initialize() {
         buttonsOnClickHandler();
 
         subjectView = initializeRecycleView(subjectView);
@@ -381,7 +391,18 @@ public class HomeFragment extends Fragment implements SubjectAdapter.ClickListen
         setTextDayOfWeek();
         setAdapter(todayListSubjects());
         startNotificationService();
+        startSilentModeService();
         setColorMode();
+    }
+
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             ViewGroup container, Bundle savedInstanceState) {
+        HomeViewModel homeViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
+        root = inflater.inflate(R.layout.fragment_home, container, false);
+
+        initialize();
+
+
 
 
         /*notificationManager = NotificationManagerCompat.from(getContext());
@@ -416,7 +437,7 @@ public class HomeFragment extends Fragment implements SubjectAdapter.ClickListen
     private void setColorMode() {
         SharedPreferences settings;
         settings = getActivity().getSharedPreferences("Pref", Context.MODE_PRIVATE);
-        if(settings.getBoolean("nightMode", false))
+        if (settings.getBoolean("nightMode", false))
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
     }
 

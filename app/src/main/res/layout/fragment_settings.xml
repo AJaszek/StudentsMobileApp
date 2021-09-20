@@ -24,6 +24,16 @@
             android:textColor="@color/colorAccent" />
 
         <Switch
+            android:id="@+id/switchVibration"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:checked="false"
+            android:showText="false"
+            android:splitTrack="false"
+            android:text="@string/vibrationModeOption"
+            android:textColor="@color/colorAccent" />
+
+        <Switch
             android:id="@+id/switchNightMode"
             android:layout_width="match_parent"
             android:layout_height="45dp"

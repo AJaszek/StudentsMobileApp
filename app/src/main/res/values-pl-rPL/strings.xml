@@ -67,4 +67,8 @@
     <string name="timetableImport">Importuj plan zajęć</string>
     <string name="exportToTextFile">Eksportuj notatki do pliku tekstowego</string>
     <string name="nightMode">Tryb nocny</string>
+    <string name="vibrationMode">Tryb wibracji</string>
+    <string name="normalMode">Tryb zwyczajny</string>
+    <string name="noClasses">Brak zajęć</string>
+    <string name="vibrationModeOption">Tryb wibracji podczas zajęć</string>
 </resources>
