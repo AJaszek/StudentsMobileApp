@@ -182,7 +182,8 @@ public class ToDoFragment extends Fragment implements TodoListAdapter.ItemClickL
     @Override
     public void onCheckBoxClick(int position, CheckBox checkBox) {
         int todoPosition = todoList.size() - position - 1;
-       // CheckBox doneCheck = getActivity().findViewById(R.id.checkTodoDone);
+        //int todoPosition = todoList.get(position);
+        // CheckBox doneCheck = getActivity().findViewById(R.id.checkTodoDone);
         checkBox.setChecked(fileHandler.changeStateTodo(todoPosition, todoList.get(position).getDone()));
 
 

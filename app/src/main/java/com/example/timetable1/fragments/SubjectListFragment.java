@@ -35,12 +35,12 @@ public class SubjectListFragment extends Fragment implements SubjectListAdapter.
 
     HomeFragment homeFragment = new HomeFragment();
     public RecyclerView subjectView;
-    public RecyclerView.Adapter adapter;
+    //public  adapter;
 
 
 
     public void setAdapter(List<Subject> subjectList) {
-        adapter = new SubjectListAdapter(subjectList, getContext(), this);
+        RecyclerView.Adapter adapter = new SubjectListAdapter(subjectList, getContext(), this);
         subjectView.setAdapter(adapter);
     }
 

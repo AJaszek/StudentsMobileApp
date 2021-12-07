@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:background="@color/colorAccent"
         android:gravity="center|center_vertical"
-        android:text="TextView"
+        android:text="Data zdjęcia"
         android:textColor="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="@+id/noteImage"
         app:layout_constraintEnd_toEndOf="parent"

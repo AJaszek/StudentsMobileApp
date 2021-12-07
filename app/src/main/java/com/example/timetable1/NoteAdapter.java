@@ -20,7 +20,7 @@ import java.io.File;
 
 public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
 
-    private Cursor NoteAdapterCursor;
+    private Cursor noteAdapterCursor;
     private final Activity activity;
     private OnCilckThumbListener onCilckThumbListener;
     private CharSequence dateToFind = "";
@@ -67,7 +67,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
 
     @Override
     public int getItemCount() {
-        return (NoteAdapterCursor == null) ? 0 : NoteAdapterCursor.getCount();
+        return (noteAdapterCursor == null) ? 0 : noteAdapterCursor.getCount();
     }
 
     public class ViewHolder extends  RecyclerView.ViewHolder implements View.OnClickListener {
@@ -96,11 +96,11 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
     }
 
     private Cursor swapCursor(Cursor cursor){
-        if(NoteAdapterCursor == cursor){
+        if(noteAdapterCursor == cursor){
             return null;
         }
-        Cursor oldCursor = NoteAdapterCursor;
-        this.NoteAdapterCursor = cursor;
+        Cursor oldCursor = noteAdapterCursor;
+        this.noteAdapterCursor = cursor;
         if(cursor != null){
             this.notifyDataSetChanged();
         }
@@ -131,18 +131,18 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
         return trimmed;
     }
     private Bitmap getBitmapFromNoteReview(int position, TextView noteDate, CharSequence dateToFind){
-        int idIndex = NoteAdapterCursor.getColumnIndex(MediaStore.Files.FileColumns._ID);
-        int mediaTypeIndex = NoteAdapterCursor.getColumnIndex(MediaStore.Files.FileColumns.MEDIA_TYPE);
+        int idIndex = noteAdapterCursor.getColumnIndex(MediaStore.Files.FileColumns._ID);
+        int mediaTypeIndex = noteAdapterCursor.getColumnIndex(MediaStore.Files.FileColumns.MEDIA_TYPE);
 
-        NoteAdapterCursor.moveToPosition(position);
+        noteAdapterCursor.moveToPosition(position);
 
 
 
-        switch (NoteAdapterCursor.getInt(mediaTypeIndex)) {
+        switch (noteAdapterCursor.getInt(mediaTypeIndex)) {
             case MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE:
 
-                int dataIndex = NoteAdapterCursor.getColumnIndex(MediaStore.Files.FileColumns.DATA);
-                String date = trimDate(NoteAdapterCursor.getString(dataIndex));
+                int dataIndex = noteAdapterCursor.getColumnIndex(MediaStore.Files.FileColumns.DATA);
+                String date = trimDate(noteAdapterCursor.getString(dataIndex));
 
                 if(dateToFind!="" && !date.contains(dateToFind))
                     return null;
@@ -150,14 +150,14 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
 
                 return MediaStore.Images.Thumbnails.getThumbnail(
                     activity.getContentResolver(),
-                        NoteAdapterCursor.getLong(idIndex),
+                        noteAdapterCursor.getLong(idIndex),
                         MediaStore.Images.Thumbnails.MICRO_KIND,
                         null
                 );
             case MediaStore.Files.FileColumns.MEDIA_TYPE_VIDEO:
                 return MediaStore.Video.Thumbnails.getThumbnail(
                         activity.getContentResolver(),
-                        NoteAdapterCursor.getLong(idIndex),
+                        noteAdapterCursor.getLong(idIndex),
                         MediaStore.Video.Thumbnails.MICRO_KIND,
                         null
                 );
@@ -167,14 +167,14 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
         }
     }
     private  void getOnClickUri(int position){
-        int mediaTypeIndex = NoteAdapterCursor.getColumnIndex(MediaStore.Files.FileColumns.MEDIA_TYPE);
-        int dataIndex = NoteAdapterCursor.getColumnIndex(MediaStore.Files.FileColumns.DATA);
+        int mediaTypeIndex = noteAdapterCursor.getColumnIndex(MediaStore.Files.FileColumns.MEDIA_TYPE);
+        int dataIndex = noteAdapterCursor.getColumnIndex(MediaStore.Files.FileColumns.DATA);
 
-        NoteAdapterCursor.moveToPosition(position);
+        noteAdapterCursor.moveToPosition(position);
 
-        switch (NoteAdapterCursor.getInt(mediaTypeIndex)) {
+        switch (noteAdapterCursor.getInt(mediaTypeIndex)) {
             case  MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE:
-                String dataString = NoteAdapterCursor.getString(dataIndex);
+                String dataString = noteAdapterCursor.getString(dataIndex);
                 Uri imageUri = Uri.parse("file://" + dataString);
                 onCilckThumbListener.OnClick(imageUri);
                 break;
@@ -182,6 +182,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
 
                 break;
             default:
+
         }
 
     }

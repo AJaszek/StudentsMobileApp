@@ -13,10 +13,6 @@ public class CalendarCustom {
     public CalendarCustom() {
         dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK) - 1;
     }
-
-   /* public int checkDayOfWeek(){
-        return calendar.get(Calendar.DAY_OF_WEEK);
-    }*/
     public int getDay(){
         return calendar.get(Calendar.DAY_OF_MONTH);
     }
@@ -34,9 +30,12 @@ public class CalendarCustom {
             return 0;
     }
     public void setDayOfWeek(int dayOfWeek) {
-        this.dayOfWeek = dayOfWeek;
+        if(dayOfWeek >= 0 && dayOfWeek < 7)
+            this.dayOfWeek = dayOfWeek;
     }
-
+    public int getDayOfWeek(){
+        return this.dayOfWeek;
+    }
     public void nextDay(){
         if(dayOfWeek<6)
             dayOfWeek++;
@@ -51,7 +50,6 @@ public class CalendarCustom {
             dayOfWeek = 6;
         calendar.add(Calendar.DAY_OF_MONTH, -1);
     }
-
     public int getTextDayOfWeek(){
         int dayName[]={
                 R.string.sunday,

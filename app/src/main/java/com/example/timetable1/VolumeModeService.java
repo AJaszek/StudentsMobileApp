@@ -66,7 +66,6 @@ public class VolumeModeService extends IntentService {
     }
     private Long findSubjectToDisplay(List<Subject>[][] subjectList, Calendar calendar, Intent intent) {
 
-      //  Log.d("aaa", "weszlo");
         DateFormat formatter = new SimpleDateFormat("HH:mm");
         int evenWeek = calendar.get(Calendar.WEEK_OF_YEAR) % 2;
         for (Subject subject : subjectList[calendar.get(Calendar.DAY_OF_WEEK) - 1][evenWeek]) {

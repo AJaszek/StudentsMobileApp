@@ -1,12 +1,9 @@
 package com.example.timetable1;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -20,12 +17,8 @@ import androidx.appcompat.app.AppCompatDelegate;
 
 import com.example.timetable1.ui.home.HomeFragment;
 
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
 import java.util.regex.Pattern;
 
 public class AddSubjectActivity extends AppCompatActivity {
@@ -114,6 +107,7 @@ public class AddSubjectActivity extends AppCompatActivity {
         String finishHour = ((EditText) findViewById(R.id.finishHour)).getText().toString();
         String roomNumber = ((EditText) findViewById(R.id.roomNumber)).getText().toString();
         String teacherName = ((EditText) findViewById(R.id.editTeacherName)).getText().toString();
+        TextView event = findViewById(R.id.eventTextView);
 
 
         if( testRegex(startHour,finishHour)){
@@ -125,7 +119,7 @@ public class AddSubjectActivity extends AppCompatActivity {
             fos.write(dataToSave.getBytes());
             fos.write('\n');
 
-
+            event.setText(getString(R.string.added));
             Toast.makeText(this, getString(R.string.added), Toast.LENGTH_LONG).show();
 
         } catch (IOException e){
@@ -140,7 +134,8 @@ public class AddSubjectActivity extends AppCompatActivity {
             }
         }
     } else{
-            Toast.makeText(this, getString(R.string.incHour), Toast.LENGTH_LONG).show();
+            event.setText(getString(R.string.incHour));
+            //Toast.makeText(this, getString(R.string.incHour), Toast.LENGTH_LONG).show();
         }
 
     }

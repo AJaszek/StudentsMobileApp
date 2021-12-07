@@ -151,7 +151,7 @@ public class ReviewSubjectActivity extends AppCompatActivity implements LoaderMa
                 //getSupportLoaderManager().initLoader(MEDIASTORE_LOADER_ID, null, this);
             } else {
                 if(shouldShowRequestPermissionRationale(Manifest.permission.READ_EXTERNAL_STORAGE)){
-                    Toast.makeText(this, "AAp need to view thumbnails", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "App need to view thumbnails", Toast.LENGTH_SHORT).show();
                 }
                 requestPermissions(new String[] {Manifest.permission.READ_EXTERNAL_STORAGE}, READ_EXTERNAL_STORAGE_PERMISSION_RESULT);
             }
@@ -167,7 +167,7 @@ public class ReviewSubjectActivity extends AppCompatActivity implements LoaderMa
                 //getSupportLoaderManager().initLoader(MEDIASTORE_LOADER_ID, null, this);
             } else {
                 if(shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)){
-                    Toast.makeText(this, "AAp need to view thumbnails", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "App need to view thumbnails", Toast.LENGTH_SHORT).show();
                 }
                 requestPermissions(new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE}, WRITE_EXTERNAL_STORAGE_PERMISSION_RESULT);
                 checkWriteExternalStoragePermission();
@@ -186,7 +186,7 @@ public class ReviewSubjectActivity extends AppCompatActivity implements LoaderMa
                 //getSupportLoaderManager().initLoader(MEDIASTORE_LOADER_ID, null, this);
             } else {
                 if(shouldShowRequestPermissionRationale(Manifest.permission.CAMERA)){
-                    Toast.makeText(this, "AAp need to view thumbnails", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "App need to view thumbnails", Toast.LENGTH_SHORT).show();
                 }
                 requestPermissions(new String[] {Manifest.permission.CAMERA}, CAMERA_PERMISSION_RESULT);
                 checkCameraPermission();
@@ -239,7 +239,7 @@ public class ReviewSubjectActivity extends AppCompatActivity implements LoaderMa
 
         imageUri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,values);
 
-        Log.d("aaa","aa");
+        //Log.d("aaa","aa");
         //Uri uriSavedImage=Uri.fromFile(new File("/sdcard/TimeTable/Notes/flashCropped.png"));
 
         Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);

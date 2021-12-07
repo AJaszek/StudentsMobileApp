@@ -50,7 +50,7 @@ public class NotificationReciever extends BroadcastReceiver {
         return null;
     }
 
-    private Subject findSubjectToDisplay(List<Subject>[][] subjectList, Calendar calendar, Intent intent) {
+    public Subject findSubjectToDisplay(List<Subject>[][] subjectList, Calendar calendar) {
         int evenWeek = calendar.get(Calendar.WEEK_OF_YEAR) % 2;
         for (Subject subject : subjectList[calendar.get(Calendar.DAY_OF_WEEK) - 1][evenWeek]) {
             // Log.d("aaa", subject.name);08:12
@@ -94,11 +94,11 @@ public class NotificationReciever extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
 
-        lastNotificationTime =  (Date)intent.getSerializableExtra("lastNotification");
+       // lastNotificationTime =  (Date)intent.getSerializableExtra("lastNotification");
         List<Subject>[][] subjectList = readExtraSubjects(intent.getByteArrayExtra("subjects"));
         Calendar calendar = Calendar.getInstance();
 
-        Subject subjectToDisplay = findSubjectToDisplay(subjectList, calendar, intent);
+        Subject subjectToDisplay = findSubjectToDisplay(subjectList, calendar);
 
 
         if (subjectToDisplay != null) {
@@ -106,23 +106,8 @@ public class NotificationReciever extends BroadcastReceiver {
 
             NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
-           /* Intent repeatingIntent = new Intent(context, RepeatingActivity.class);
-            repeatingIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            PendingIntent pendingIntent = PendingIntent.getActivity(context, 100, repeatingIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-/*
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(context)
-                .setContentIntent(pendingIntent)
-                .setSmallIcon(R.drawable.ic_menu_camera)
-                .setContentTitle("tutyl")
-                .setContentText("wiadomosc")
-                .setAutoCancel(true);
-        notificationManager.notify(100, builder.build());
-*/
-
-            //notificationManager = NotificationManagerCompat.from(context);
-
             Notification notification = new NotificationCompat.Builder(context, CHANNEL_2_ID)
-                    .setSmallIcon(R.drawable.ic_menu_camera)
+                    .setSmallIcon(R.drawable.ic_menu_slideshow)
                     .setContentTitle(subjectToDisplay.getName())
                     .setContentText(content)
                     .setPriority(NotificationCompat.PRIORITY_MIN)

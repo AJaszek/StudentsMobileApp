@@ -16,7 +16,7 @@ import java.util.List;
 public class RemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
 
     private Context context = null;
-    private int appWidgetId;
+    //private int appWidgetId;
     public CalendarCustom calendar;
     public FileHandler fileHandler = new FileHandler();
 
@@ -25,8 +25,8 @@ public class RemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory
     public RemoteViewsFactory(Context context, Intent intent)
     {
         this.context = context;
-        appWidgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,
-                AppWidgetManager.INVALID_APPWIDGET_ID);
+       /* appWidgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,
+                AppWidgetManager.INVALID_APPWIDGET_ID);*/
 
     }
 
@@ -65,9 +65,11 @@ public class RemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory
 
         RemoteViews remoteView = new RemoteViews(context.getPackageName(),
                 R.layout.subject_row_widget);
-        Subject s = widgetList.get(position);
+        //Subject s = widgetList.get(position);
 
-        String line = widgetList.get(position).getName() + " - " + widgetList.get(position).getStartHour() + " - " + widgetList.get(position).getRoomNumber();
+        String line = widgetList.get(position).getName() + " - "
+                + widgetList.get(position).getStartHour() + " - "
+                + widgetList.get(position).getRoomNumber();
         remoteView.setTextViewText(R.id.widget_item, line);
 
         return remoteView;

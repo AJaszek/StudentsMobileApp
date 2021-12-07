@@ -1,9 +1,6 @@
 package com.example.timetable1;
 
 import android.os.Environment;
-import android.os.FileUtils;
-import android.util.Log;
-import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -18,7 +15,6 @@ import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -30,6 +26,8 @@ public class FileHandler {
     String pathTodo = "/data/data/com.example.timetable1/files/Todo";
     String pathDirectory = "/data/data/com.example.timetable1/files";
     String pathSheredPreferences = "/data/data/com.example.timetable1/shared_prefs/Pref.xml";
+
+    String separator = "###########";
 
     public void makeDateFile(String directory) {
         FileOutputStream fos = null;
@@ -276,7 +274,7 @@ public class FileHandler {
         }
     }
 
-    public void removeTodo(int position) {
+    public boolean removeTodo(int position) {
         File inputFile;
         File tempFile;
         int counter = -1;
@@ -302,14 +300,15 @@ public class FileHandler {
             writer.close();
             reader.close();
             boolean successful = tempFile.renameTo(inputFile);
-
+            return successful;
             //  todayListSubjects().get(position).removeNote(todayListSubjects().get(position).findNoteIndex(noteToRemove));
             //  setAdapter(todayListSubjects());
 
 
         } catch (IOException e) {
-            e.printStackTrace();
+            return false;
         }
+
     }
 
     public boolean changeStateTodo(int position, boolean done) {
@@ -349,15 +348,15 @@ public class FileHandler {
             writer.close();
             reader.close();
             boolean successful = tempFile.renameTo(inputFile);
-
+            return checked;
             //  todayListSubjects().get(position).removeNote(todayListSubjects().get(position).findNoteIndex(noteToRemove));
             //  setAdapter(todayListSubjects());
 
 
         } catch (IOException e) {
-            e.printStackTrace();
+            return false;
         }
-        return checked;
+
     }
 
     public boolean deleteAllData() {
@@ -396,11 +395,14 @@ public class FileHandler {
         return exportFile(filesList, "exportedData", "TimetableApp Exported Data");
 
     }
-
+    boolean checkHeader(String s){
+        return s.equals("TimetableApp Exported Data")||s.equals("TimetableApp Exported Timetable");
+    }
     public boolean importData(String filePath) {
 
-        File importedFile = new File(filePath);
+
         try {
+            File importedFile = new File(filePath);
             BufferedReader reader = new BufferedReader(new FileReader(importedFile));
             List<BufferedWriter> writersList = new ArrayList<>();
             writersList.add(new BufferedWriter(new FileWriter(pathFile)));
@@ -412,10 +414,10 @@ public class FileHandler {
             int counter = -1;
             while ((currentLine = reader.readLine()) != null) {
 
-                if (currentLine.equals("###########"))
+                if (currentLine.equals(separator))
                     counter++;
                 else {
-                    if (counter == -1 && !(currentLine.equals("TimetableApp Exported Data")||currentLine.equals("TimetableApp Exported Timetable")))
+                    if (counter == -1 && !(checkHeader(currentLine)))
                         return false;
                     else if (counter >= 0)
                         writersList.get(counter).write(currentLine + System.getProperty("line.separator"));
@@ -434,8 +436,9 @@ public class FileHandler {
 
     }
     public boolean exportFile(List<File> filesList, String fileName, String header){
-        String exportDirectory = Environment.getExternalStorageDirectory() + "/TimeTable/" + fileName;
+
         try {
+            String exportDirectory = Environment.getExternalStorageDirectory() + "/TimeTable/" + fileName;
             FileOutputStream fos = new FileOutputStream(exportDirectory, true);
             fos.write(header.getBytes());
             fos.write('\n');
@@ -443,7 +446,7 @@ public class FileHandler {
             for (File file : filesList) {
                 BufferedReader reader = new BufferedReader(new FileReader(file));
 
-                String separator = "###########";
+                //String separator = "###########";
                 String currentLine;
 
                 fos.write(separator.getBytes());
@@ -456,7 +459,7 @@ public class FileHandler {
             }
             fos.close();
         } catch (IOException e) {
-            e.printStackTrace();
+           // e.printStackTrace();
             return false;
         }
 
@@ -484,7 +487,7 @@ public class FileHandler {
 
             for (TextNote note : notesList) {
 
-                String separator = "###########";
+                //String separator = "###########";
                 fos.write(separator.getBytes());
                 fos.write('\n');
 

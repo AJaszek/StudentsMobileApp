@@ -62,39 +62,35 @@ public class HomeFragment extends Fragment implements SubjectAdapter.ClickListen
     public RecyclerView subjectView;
     public RecyclerView.Adapter adapter;
     private List<Subject>[][] subjectList;
-    Activity activity = (Activity) getContext();
-    private View root;
     public CalendarCustom calendar = new CalendarCustom();
     public FileHandler fileHandler = new FileHandler();
 
 
+    Activity activity = (Activity) getContext();
+    private View root;
+
     public List<Subject> todayListSubjects() {
         return subjectList[calendar.checkDayOfWeek()][calendar.evenWeekCheck()];
     }
-
     private void changeDayView() {
         setTextDayOfWeek();
         setAdapter(todayListSubjects());
     }
-
     private void setTextDayOfWeek() {
         TextView text = (TextView) root.findViewById(R.id.weekDay);
         TextView date = (TextView) root.findViewById(R.id.dateString);
         text.setText(calendar.getTextDayOfWeek());
         date.setText(calendar.getDay() + "." + calendar.getMonth());
     }
-
     public void setAdapter(List<Subject> subjectList) {
         String date = String.valueOf(calendar.getDay()) + calendar.getMonth() + ".";
         adapter = new SubjectAdapter(subjectList, this, date);
         subjectView.setAdapter(adapter);
     }
-
     public void openAddSubjectActivity() {
         Intent intent = new Intent(getActivity(), AddSubjectActivity.class);
         startActivity(intent);
     }
-
     private void sortSubjectLists() {
         for (int l = 0; l < 2; l++) {
             for (int k = 0; k < 7; k++) {
@@ -111,14 +107,12 @@ public class HomeFragment extends Fragment implements SubjectAdapter.ClickListen
             }
         }
     }
-
     public RecyclerView initializeRecycleView(RecyclerView subjectView) {
         subjectView = (RecyclerView) root.findViewById(R.id.subjectsView);
         subjectView.setHasFixedSize(true);
         subjectView.setLayoutManager(new LinearLayoutManager(activity));
         return subjectView;
     }
-
     public void resizeSubjectView(int position) {
         ConstraintLayout viewById = (ConstraintLayout) subjectView.findViewHolderForLayoutPosition(position)
                 .itemView.findViewById(R.id.resizingSubjectConstrain);
@@ -131,20 +125,17 @@ public class HomeFragment extends Fragment implements SubjectAdapter.ClickListen
         }
         todayListSubjects().get(position).clicked = !clicked;
     }
-
     @Override
     public void onSubjectClick(int position) {
 
         resizeSubjectView(position);
 
     }
-
     @Override
     public void onDeleteClick(int position) {
         deleteSubject(position);
         //Log.d("aaa", "pos"+position);
     }
-
     public String findStringSubject(int position) {
 
         Subject subj = todayListSubjects().get(position);
@@ -152,7 +143,6 @@ public class HomeFragment extends Fragment implements SubjectAdapter.ClickListen
         return subj.getName() + ";" + subj.getStartHour() + ";" +
                 subj.getFinishHour() + ";" + subj.getTeacherName() + ";" + subj.getRoomNumber() + ";" + calendar.checkDayOfWeek();
     }
-
     private void deleteSubject(int position) {
 
         String subjectToRemove = findStringSubject(position);
@@ -198,7 +188,6 @@ public class HomeFragment extends Fragment implements SubjectAdapter.ClickListen
 
 
     }
-
     @Override
     public void addNoteClick(int position, String note, int noteType) {
 
@@ -249,7 +238,6 @@ public class HomeFragment extends Fragment implements SubjectAdapter.ClickListen
 
 
     }
-
     @Override
     public void delNoteClick(int position, String noteToRemove) {
         String subjectToRemoveNote = findStringSubject(position);
@@ -300,7 +288,6 @@ public class HomeFragment extends Fragment implements SubjectAdapter.ClickListen
         // FileInputStream fileToRead = openFileInputStream();
         //  FileOutputStream tempFile = openFileOutput
     }
-
     public void buttonsOnClickHandler() {
         Button nextBut = root.findViewById(R.id.nextDay);
         Button prevBut = root.findViewById(R.id.previousDay);
@@ -329,7 +316,6 @@ public class HomeFragment extends Fragment implements SubjectAdapter.ClickListen
             }
         });
     }
-
     public Intent putExtraSubjectsIntoIntent(Intent intent) {
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         ObjectOutputStream out = null;
@@ -351,7 +337,6 @@ public class HomeFragment extends Fragment implements SubjectAdapter.ClickListen
         }
         return null;
     }
-
     public void startNotificationService() {
         SharedPreferences preferences = getActivity().getSharedPreferences("Pref", Context.MODE_PRIVATE);
 
@@ -366,7 +351,6 @@ public class HomeFragment extends Fragment implements SubjectAdapter.ClickListen
         }
 
     }
-
     public void startSilentModeService() {
         SharedPreferences preferences = getActivity().getSharedPreferences("Pref", Context.MODE_PRIVATE);
 
@@ -379,7 +363,6 @@ public class HomeFragment extends Fragment implements SubjectAdapter.ClickListen
             alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis() + 1000, pendingIntent);
         }
     }
-
     private void initialize() {
         buttonsOnClickHandler();
 
@@ -394,7 +377,6 @@ public class HomeFragment extends Fragment implements SubjectAdapter.ClickListen
         startSilentModeService();
         setColorMode();
     }
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         HomeViewModel homeViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
@@ -433,7 +415,6 @@ public class HomeFragment extends Fragment implements SubjectAdapter.ClickListen
 
         return root;
     }
-
     private void setColorMode() {
         SharedPreferences settings;
         settings = getActivity().getSharedPreferences("Pref", Context.MODE_PRIVATE);

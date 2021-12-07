@@ -50,6 +50,7 @@ public class NoteShowActivity extends AppCompatActivity {
             if(imageUri != null && fullNote != null){
                 fullNote.setImageURI(imageUri);
 
+
             }
             //String aa = imageUri.
         }

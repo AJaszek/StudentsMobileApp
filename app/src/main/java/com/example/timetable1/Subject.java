@@ -41,8 +41,8 @@ public class Subject implements Serializable {
     public String getStartHour() { return startHour; }
     public Date getStartHourDate() {
 
-       // String czas = "12:43";
-        DateFormat sdf = new SimpleDateFormat("HH:mm"); // or "hh:mm" for 12 hour format
+
+        DateFormat sdf = new SimpleDateFormat("HH:mm");
         try {
             Date date = sdf.parse(startHour);
 
@@ -53,15 +53,29 @@ public class Subject implements Serializable {
         }
     }
     public String getFinishHour() { return finishHour; }
+    public void setStartHour(String startHour){
+        this.startHour = startHour;
+    }
+    public void setFinishHour(String finishHour){
+        this.finishHour = finishHour;
+    }
     public String getRoomNumber() { return roomNumber; }
     public String getNote(int index) {
-        return notes.get(index);
+        if(index < notes.size())
+            return notes.get(index);
+        else
+            return null;
     }
     public void addNote(String note) {
         this.notes.add(note);
     }
-    public void removeNote(int index){
-        this.notes.remove(index);
+    public boolean removeNote(int index) {
+        if(index < notes.size()) {
+            this.notes.remove(index);
+            return true;
+        }
+        else
+            return false;
     }
     public ArrayList<String> getNotesArray() {
         return notes;
