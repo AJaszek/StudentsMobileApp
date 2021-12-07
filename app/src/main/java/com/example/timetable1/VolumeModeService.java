@@ -59,10 +59,13 @@ public class VolumeModeService extends IntentService {
     }
     public void setVibrationMode(boolean vibration){
         AudioManager mAudioManager = (AudioManager) getApplicationContext().getSystemService(Context.AUDIO_SERVICE);
-        if(vibration)
-            mAudioManager.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
-        else
-            mAudioManager.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
+        int currentMode = mAudioManager.getRingerMode();
+        if(currentMode != AudioManager.RINGER_MODE_SILENT) {
+            if (vibration)
+                mAudioManager.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
+            else
+                mAudioManager.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
+        }
     }
     private Long findSubjectToDisplay(List<Subject>[][] subjectList, Calendar calendar, Intent intent) {
 

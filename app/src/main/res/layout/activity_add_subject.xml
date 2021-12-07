@@ -53,7 +53,6 @@
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:background="@drawable/button_transparent_backgroun"
-        android:onClick="back"
         android:text="@string/buttonBack"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

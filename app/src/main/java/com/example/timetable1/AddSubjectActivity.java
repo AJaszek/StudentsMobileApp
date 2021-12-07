@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -63,7 +64,7 @@ public class AddSubjectActivity extends AppCompatActivity {
                                        int position, long id) {
                 //String item = arg0.getItemAtPosition(position).toString();
                 dayOfWeek = position;
-                ((TextView)parentView.getChildAt(0)).setTextColor(getResources().getColor(R.color.colorAccent));
+                //((TextView)parentView.getChildAt(0)).setTextColor(getResources().getColor(R.color.colorAccent));
 
             }
 
@@ -83,7 +84,7 @@ public class AddSubjectActivity extends AppCompatActivity {
                                        int position, long id) {
                 //String item = arg0.getItemAtPosition(position).toString();
                 evenWeek = position;
-                ((TextView)parentView.getChildAt(0)).setTextColor(getResources().getColor(R.color.colorAccent));
+                //((TextView)parentView.getChildAt(0)).setTextColor(getResources().getColor(R.color.colorAccent));
 
             }
 
@@ -92,7 +93,13 @@ public class AddSubjectActivity extends AppCompatActivity {
 
             }
         });
-
+        Button backButton = findViewById(R.id.buttonBack);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                back();
+            }
+        });
 
     }
     public boolean testRegex(String startHour, String finishHour){
@@ -139,8 +146,9 @@ public class AddSubjectActivity extends AppCompatActivity {
         }
 
     }
-    public void back(View v){
-        Intent intent = new Intent(this, HomeFragment.class);
+
+    public void back(){
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
     private void setColorMode() {

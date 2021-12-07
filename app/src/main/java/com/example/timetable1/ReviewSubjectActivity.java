@@ -134,10 +134,10 @@ public class ReviewSubjectActivity extends AppCompatActivity implements LoaderMa
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode){
             case  READ_EXTERNAL_STORAGE_PERMISSION_RESULT:
-                if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                /*if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
                     //Toast.makeText(this, "Now have acces to view thumbs", Toast.LENGTH_SHORT).show();
                     LoaderManager.getInstance(this).initLoader(MEDIASTORE_LOADER_ID, null, this);
-                }
+                }*/
                 break;
             default:
                 super.onRequestPermissionsResult(requestCode, permissions, grantResults);
