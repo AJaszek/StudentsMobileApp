@@ -80,7 +80,7 @@ public class HomeFragment extends Fragment implements SubjectAdapter.ClickListen
         TextView text = (TextView) root.findViewById(R.id.weekDay);
         TextView date = (TextView) root.findViewById(R.id.dateString);
         text.setText(calendar.getTextDayOfWeek());
-        date.setText(calendar.getDay() + "." + calendar.getMonth());
+        date.setText(calendar.getDay() + "." + (calendar.getMonth()+1));
     }
     public void setAdapter(List<Subject> subjectList) {
         String date = String.valueOf(calendar.getDay()) + calendar.getMonth() + ".";

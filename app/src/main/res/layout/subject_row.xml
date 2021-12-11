@@ -68,7 +68,7 @@
             android:text="Numer sali"
             android:theme="@style/Transparent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.479"
+            app:layout_constraintHorizontal_bias="0.369"
             app:layout_constraintStart_toEndOf="@+id/subjectHours"
             app:layout_constraintTop_toTopOf="parent" />
 
